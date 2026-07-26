@@ -1,0 +1,9 @@
+- [User profile](user_profile.md) — 传播数据挖掘竞赛参赛者,方向感强/多次纠错,ML 具体算法细节需展开讲
+- [反迎合偏好](feedback_non_sycophantic.md) — 明确要求平等对话、直接反驳错误、不要客套
+- [Competition context](project_circle_iq.md) — 三层建模(圈层识别→传播预测→策略优化);已定参数:2周、论文+代码、云端处理
+- [GPU 服务器接入](project_gpu_server.md) — SSH 别名 ppio-gpu,平台代理拦 pubkey,ControlMaster 复用免密;当前 4090 测试机,H100 待切
+- [数据实况](project_data_reality.md) — 200GB+/GB18030编码/情绪与行业100%填充/画像稀疏/大议题下用户重合和图密度足够
+- [MD5空值哨兵](project_md5_null_sentinel.md) — d41d8cd98f00b204e9800998ecf8427e = MD5(""),所有MD5统计要先过滤
+- [算法决策](project_algorithm_decisions.md) — **主线转向"跨议题稳定互动圈"**(单议题 Leiden 降为中间产物);内容作评估;GNN 弃用
+- [稳定互动圈框架](../../../Desktop/project/2026-7-CircleIQ/docs/persistent-community-framework.md) — 圈层真正定义:多议题都稳定互动的用户,K=3 起
+- [算力踩坑](project_perf_lessons.md) — karateclub 单核锁死;HDBSCAN 单核瓶颈;pytorch 用阿里 cu121 镜像;shell 引号防坑
