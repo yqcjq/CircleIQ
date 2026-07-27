@@ -41,9 +41,15 @@ def main():
             "core_mb": s["core_mb"], "text_mb": s["text_mb"], "md5_computed": s["md5_computed"],
         })
     df = pd.DataFrame(rows).sort_values(["category", "topic", "zip"])
+    # 已确认的重复 zip(处理产物逐字节一致,见 docs/data-processing.md §3.4)
+    DUP = "社交媒体-性别与婚育观（wb）2025年7月-2026年1月"
+    df["duplicate_of"] = None
+    df.loc[df.zip == DUP, "duplicate_of"] = "生育话题（wb）2025年7月-2026年1月"
     df.to_parquet(DATA / "catalog.parquet", index=False)
-    print(f"catalog: {len(df)} zips, named: {df.event_name.notna().sum()}")
-    print(df.groupby("category")[["rows", "n_users", "core_mb", "text_mb"]].sum())
+    print(f"catalog: {len(df)} zips, named: {df.event_name.notna().sum()}, duplicates: {df.duplicate_of.notna().sum()}")
+    eff = df[df.duplicate_of.isna()]
+    print("=== 去重后口径 ===")
+    print(eff.groupby("category")[["rows", "n_users", "core_mb", "text_mb"]].sum())
 
 
 if __name__ == "__main__":

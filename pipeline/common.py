@@ -159,9 +159,11 @@ def process_frame(raw: pd.DataFrame, csv_name: str) -> tuple[pd.DataFrame, pd.Da
     for c in ["author_name", "root_author_name"]:
         df[c] = df[c].str.strip("'\" ").replace("", None)
 
-    # 数值列
+    # 数值列(脏数据可能出现超 int64 范围的浮点,先夹取再转)
     for c in NUM_COLS:
-        df[c] = pd.to_numeric(df[c], errors="coerce").astype("Int64")
+        s = pd.to_numeric(df[c], errors="coerce")
+        s = s.where(s.abs() < 2**62, other=pd.NA)
+        df[c] = s.round().astype("Int64")
 
     # 派生
     df["auth_tier"] = derive_auth_tier(df["auth_type"], df["user_type"], df["actor_l1"])
