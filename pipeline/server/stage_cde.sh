@@ -6,8 +6,8 @@ cd /root/data
 source ~/circleiq/venv/bin/activate
 export POLARS_MAX_THREADS=3
 
-echo "=== [1/4] validate_counts $(date +%H:%M:%S) ==="
-python3 validate_counts.py --workers 12
+echo "=== [1/4] validate_rolling $(date +%H:%M:%S) ==="
+python3 validate_rolling.py --workers 12
 
 echo "=== [2/4] content modulation $(date +%H:%M:%S) ==="
 python3 analyze_content_modulation.py

@@ -43,26 +43,31 @@ def _tail_integral(times, dims, K, beta, T1):
 
 
 def _fit_dim(args):
-    """单目标维 k 的凸 MLE: 参数 (μ_k, α_{1k}..α_{Kk})"""
-    R_k, G, Tspan, n_k, K, l2 = args
-    # R_k: [n_k, K] 该维事件处的激发;目标: max Σ log(μ + R_k @ a) - μ*Tspan - a·G
+    """单目标维 k 的凸 MLE: 参数 (μ_k1..μ_kB, α_{1k}..α_{Kk}),μ 分段常数"""
+    R_k, G, bin_idx_k, durs, n_k, K, l2 = args
+    B = len(durs)
+
     def negll(p):
-        mu, a = p[0], p[1:]
-        lam = mu + R_k @ a
+        mu_b, a = p[:B], p[B:]
+        lam = mu_b[bin_idx_k] + R_k @ a
         lam = np.maximum(lam, 1e-12)
-        ll = np.log(lam).sum() - mu * Tspan - a @ G - l2 * (a @ a)
-        g_mu = (1.0 / lam).sum() - Tspan
-        g_a = R_k.T @ (1.0 / lam) - G - 2 * l2 * a
-        return -ll, -np.concatenate(([g_mu], g_a))
-    x0 = np.concatenate(([n_k / Tspan * 0.5 + 1e-9], np.full(K, 0.01)))
-    bounds = [(1e-10, None)] + [(0.0, 10.0)] * K
+        ll = np.log(lam).sum() - mu_b @ durs - a @ G - l2 * (a @ a)
+        inv = 1.0 / lam
+        g_mu = np.bincount(bin_idx_k, weights=inv, minlength=B) - durs
+        g_a = R_k.T @ inv - G - 2 * l2 * a
+        return -ll, -np.concatenate((g_mu, g_a))
+
+    counts_b = np.bincount(bin_idx_k, minlength=B).astype(float)
+    x0 = np.concatenate((counts_b / np.maximum(durs, 1.0) * 0.5 + 1e-9, np.full(K, 0.01)))
+    bounds = [(1e-10, None)] * B + [(0.0, 10.0)] * K
     res = minimize(negll, x0, jac=True, method="L-BFGS-B", bounds=bounds,
                    options={"maxiter": 500})
     return res.x, -res.fun
 
 
-def fit_hawkes(times, dims, K, T0, T1, betas=None, l2=1e-3, val_frac=0.0):
+def fit_hawkes(times, dims, K, T0, T1, betas=None, l2=1e-3, val_frac=0.0, mu_bins=6):
     """times: 升序秒级 float64;dims: int64 [0,K);窗口 [T0,T1]。
+    μ 为分段常数(mu_bins 段),对付事件的非平稳背景;固定 β 下每维仍是凸问题。
     val_frac>0 时,最后一段时间作验证(不参与拟合,报告验证 LL/事件)。"""
     times = np.asarray(times, dtype=np.float64)
     dims = np.asarray(dims, dtype=np.int64)
@@ -74,54 +79,64 @@ def fit_hawkes(times, dims, K, T0, T1, betas=None, l2=1e-3, val_frac=0.0):
     times_tr, dims_tr = times[tr], dims[tr]
     Tspan = t_split - T0
 
+    B = mu_bins
+    edges = np.linspace(T0, t_split, B + 1)
+    durs = np.diff(edges)
+    bin_idx = np.clip(np.searchsorted(edges, times_tr, side="right") - 1, 0, B - 1)
+
     n_by_dim = np.bincount(dims_tr, minlength=K)
     best = None
     for beta in betas:
         R = _precompute_R(times_tr, dims_tr, K, beta)
         G = _tail_integral(times_tr, dims_tr, K, beta, t_split)
-        mu = np.zeros(K)
+        mu = np.zeros((K, B))
         A = np.zeros((K, K))  # A[j,k]
         ll = 0.0
         for k in range(K):
             mask = dims_tr == k
             if mask.sum() == 0:
-                mu[k] = 1e-10
+                mu[k, :] = 1e-10
                 continue
-            p, llk = _fit_dim((R[mask], G, Tspan, int(mask.sum()), K, l2))
-            mu[k], A[:, k] = p[0], p[1:]
+            p, llk = _fit_dim((R[mask], G, bin_idx[mask], durs, int(mask.sum()), K, l2))
+            mu[k, :], A[:, k] = p[:B], p[B:]
             ll += llk
         if best is None or ll > best["ll"]:
             best = {"beta": beta, "mu": mu, "A": A, "ll": ll}
 
-    # 基线:齐次 Poisson LL
+    # 基线1:齐次 Poisson;基线2:同样分段的 Poisson(结构增益的公平对照)
     ll_pois = 0.0
+    ll_pois_pw = 0.0
     for k in range(K):
         if n_by_dim[k] > 0:
             rate = n_by_dim[k] / Tspan
             ll_pois += n_by_dim[k] * np.log(rate) - rate * Tspan
+        cb = np.bincount(bin_idx[dims_tr == k], minlength=B).astype(float)
+        pos = cb > 0
+        ll_pois_pw += float((cb[pos] * np.log(cb[pos] / durs[pos])).sum() - cb.sum())
 
     out = {
         "beta": best["beta"], "mu": best["mu"], "A": best["A"],
-        "ll_train": best["ll"], "ll_poisson": ll_pois,
+        "mu_edges": edges, "ll_train": best["ll"], "ll_poisson": ll_pois,
+        "ll_poisson_piecewise": ll_pois_pw,
         "n_train": int(len(times_tr)), "n_by_dim": n_by_dim.tolist(),
         "ll_gain_per_event": float((best["ll"] - ll_pois) / max(1, len(times_tr))),
+        "ll_gain_vs_piecewise": float((best["ll"] - ll_pois_pw) / max(1, len(times_tr))),
         "branching_max_row_sum": float(best["A"].sum(axis=1).max()),
     }
 
-    # 验证窗 LL(用训练好的参数,在 (t_split, T1] 上评估;历史含训练事件)
+    # 验证窗 LL(用训练好的参数;背景用最后一段的 μ 外推)
     if val_frac > 0:
         va = times > t_split
         out["n_val"] = int(va.sum())
         if va.sum() > 0:
             beta, mu, A = best["beta"], best["mu"], best["A"]
+            mu_last = mu[:, -1]
             R_all = _precompute_R(times, dims, K, beta)
-            lam_val = mu[dims[va]] + np.einsum("ij,ij->i", R_all[va], A[:, dims[va]].T)
+            lam_val = mu_last[dims[va]] + np.einsum("ij,ij->i", R_all[va], A[:, dims[va]].T)
             lam_val = np.maximum(lam_val, 1e-12)
             G_val = _tail_integral(times, dims, K, beta, T1) - _tail_integral(times_tr, dims_tr, K, beta, t_split)
-            # 积分项: μ·(T1-t_split) + Σ_j Σ_k α_jk · (G_j 段内增量)
-            integral = mu.sum() * (T1 - t_split) + (A.sum(axis=1) * G_val).sum()
+            integral = mu_last.sum() * (T1 - t_split) + (A.sum(axis=1) * G_val).sum()
             out["ll_val"] = float(np.log(lam_val).sum() - integral)
-            # Poisson 基线在验证窗
             rate = n_by_dim.sum() / Tspan
             out["ll_val_poisson"] = float(va.sum() * np.log(max(rate, 1e-12)) - rate * (T1 - t_split))
     return out
@@ -147,8 +162,10 @@ if __name__ == "__main__":
             state[k] += beta_true
     times = np.array([e[0] for e in events]); dims = np.array([e[1] for e in events])
     print(f"simulated {len(events)} events")
-    res = fit_hawkes(times, dims, 2, 0.0, T, betas=[1/50, 1/100, 1/200], val_frac=0.2)
+    res = fit_hawkes(times, dims, 2, 0.0, T, betas=[1/50, 1/100, 1/200], val_frac=0.2, mu_bins=4)
     print("beta:", res["beta"], "(true 0.01)")
-    print("mu:", res["mu"].round(4), "(true", mu_true, ")")
+    print("mu (bins mean):", res["mu"].mean(axis=1).round(4), "(true", mu_true, ")")
     print("A:\n", res["A"].round(3), "\n(true\n", A_true, ")")
-    print("ll gain/event:", round(res["ll_gain_per_event"], 4), "val ll:", res.get("ll_val"))
+    print("ll gain/event:", round(res["ll_gain_per_event"], 4),
+          "vs piecewise-poisson:", round(res["ll_gain_vs_piecewise"], 4),
+          "val ll:", res.get("ll_val"))

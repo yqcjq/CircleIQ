@@ -30,14 +30,22 @@ def main():
     fit = json.loads((DATA / "hawkes" / f"{args.name}.json").read_text())
     ev = np.load(DATA / "hawkes" / "events" / f"{args.name}.npz")
     times, dims = ev["times"].astype(float), ev["dims"].astype(np.int64)
-    mu, A, beta = np.array(fit["mu"]), np.array(fit["A"]), fit["beta"]
+    mu2d = np.asarray(fit["mu"], dtype=np.float64)
+    if mu2d.ndim == 1:
+        mu2d = mu2d[:, None]
+    mu_edges = np.asarray(fit.get("mu_edges", [fit["T0"], fit["T1"]]), dtype=np.float64)
+    A, beta = np.array(fit["A"]), fit["beta"]
     K, T0, T1 = fit["D"], fit["T0"], fit["T1"]
 
     cat, topic = args.name.split("__", 1)
     files = sorted((DATA / "core" / cat).glob(f"{topic}__*.parquet"))
     df = pl.concat([pl.read_parquet(f, columns=["md5_author", "md5_mid", "ts", "auth_tier", "n_followers"]) for f in files])
     df = df.filter(pl.col("md5_mid").is_null() | (pl.int_range(pl.len()).over("md5_mid") == 0))
-    lo, hi = T0 + 0.10 * (T1 - T0), T0 + 0.60 * (T1 - T0)
+    # KOL 锚点选在事件"上升期":全窗口按小时分箱找峰值小时,取峰值前粉丝数最高的 bigv/org 帖
+    hr = ((times - T0) // 3600).astype(int)
+    peak_t = T0 + (np.bincount(hr).argmax() + 0.5) * 3600
+    lo = T0 + 0.02 * (T1 - T0)
+    hi = peak_t if peak_t > lo + 3600 else T0 + 0.60 * (T1 - T0)
     kol = (df.filter(pl.col("ts").is_between(lo, hi) & pl.col("auth_tier").is_in(["bigv", "org"]))
              .sort("n_followers", descending=True).head(1))
     if kol.height == 0:
@@ -65,12 +73,11 @@ def main():
     state_with[d_kol] += beta  # 该帖本身在 t_kol 注入
 
     n_bins = int(args.horizon_h)
-    # factual / counterfactual 模拟(按小时分箱需要事件级输出;简化:用 12 段×2h)
     from simulate import _simulate_one
     def run_many(state0, seed0):
         curves = np.zeros((args.n_runs, n_bins))
         for r in range(args.n_runs):
-            st, sd = _simulate_one(mu, A, beta, state0.copy(), t_kol, t_kol + horizon,
+            st, sd = _simulate_one(mu2d, mu_edges, A, beta, state0.copy(), t_kol, t_kol + horizon,
                                    -1.0, 0, 0, seed0 + r)
             if len(st):
                 b = np.minimum(((st - t_kol) / 3600).astype(int), n_bins - 1)

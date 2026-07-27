@@ -83,10 +83,12 @@ def fit_topic(job):
         "stable_event_share": round(stable_share, 4),
         "T0": T0, "T1": T1, "span_days": round((T1 - T0) / 86400, 1),
         "beta": res["beta"], "beta_halflife_min": round(np.log(2) / res["beta"] / 60, 1),
-        "mu": res["mu"].tolist(), "A": res["A"].tolist(),
+        "mu": res["mu"].tolist(), "mu_edges": res["mu_edges"].tolist(), "A": res["A"].tolist(),
         "n_by_dim": res["n_by_dim"],
         "ll_train": res["ll_train"], "ll_poisson": res["ll_poisson"],
+        "ll_poisson_piecewise": res["ll_poisson_piecewise"],
         "ll_gain_per_event": res["ll_gain_per_event"],
+        "ll_gain_vs_piecewise": res["ll_gain_vs_piecewise"],
         "branching_max_row_sum": res["branching_max_row_sum"],
         "ll_val": res.get("ll_val"), "ll_val_poisson": res.get("ll_val_poisson"),
         "n_val": res.get("n_val"), "secs": round(time.time() - t0, 1),
@@ -149,6 +151,7 @@ def main():
                 print(f"[{i}/{len(jobs)} {time.time()-t0:.0f}s] {r['category']}/{r['topic']}: "
                       f"n={r['n_events']:,} stable={r['stable_event_share']:.0%} "
                       f"β半衰={r['beta_halflife_min']}min gain={r['ll_gain_per_event']:.3f} "
+                      f"vs分段P={r['ll_gain_vs_piecewise']:.3f} "
                       f"val={'%.0f' % r['ll_val'] if r['ll_val'] is not None else '-'}", flush=True)
     with open(DATA / f"hawkes_summary_{args.category}.json", "w") as f:
         json.dump(results, f, ensure_ascii=False, indent=1)

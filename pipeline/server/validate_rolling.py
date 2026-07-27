@@ -29,13 +29,18 @@ def validate_one(job):
     ev = np.load(DATA / "hawkes" / "events" / f"{name}.npz")
     times, dims = ev["times"].astype(float), ev["dims"].astype(np.int64)
     K, T0, T1 = fit["D"], fit["T0"], fit["T1"]
-    mu, A, beta = np.array(fit["mu"]), np.array(fit["A"]), fit["beta"]
+    mu2d = np.asarray(fit["mu"], dtype=np.float64)
+    if mu2d.ndim == 1:
+        mu2d = mu2d[:, None]
+    mu_edges = np.asarray(fit.get("mu_edges", [T0, T1]), dtype=np.float64)
+    A, beta = np.array(fit["A"]), fit["beta"]
     H = horizon_h * 3600.0
     span = T1 - T0
     if span <= H * 4:
         return {"name": name, "skip": "window too short"}
 
     anchors = [T0 + f * span for f in np.linspace(0.2, 0.9, 8)]
+    const_edges = np.array([-1e18, 1e18])
     rows = []
     for t in anchors:
         hist = times < t
@@ -44,7 +49,11 @@ def validate_one(job):
             continue
         actual = int(((times >= t) & (times < t + H)).sum())
         state0 = history_state(times[hist], dims[hist], K, beta, t)
-        sim = _simulate_many(mu, A, beta, state0, t, t + H, -1.0, 0, 0, n_runs, 99, 200_000)
+        # 严格防泄漏:背景用锚点所在段的前一段 μ(当前段的 μ 拟合用了锚点后的数据)
+        b = int(np.clip(np.searchsorted(mu_edges, t, side="right") - 1, 0, mu2d.shape[1] - 1))
+        mu_loc = mu2d[:, max(0, b - 1)][:, None].copy()
+        sim = _simulate_many(mu_loc, const_edges, A, beta, state0, t, t + H, -1.0, 0, 0,
+                             n_runs, 99, 200_000)
         pred = float(sim.sum(1).mean())
         rate = n_hist / (t - T0)
         poisson = rate * H
