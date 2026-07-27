@@ -4,117 +4,117 @@
  "weight": "n_topics",
  "k_grid": {
   "2": {
-   "edges": 458161,
-   "users": 298226
+   "edges": 458253,
+   "users": 298244
   },
   "3": {
-   "edges": 86166,
-   "users": 62951
+   "edges": 86180,
+   "users": 62964
   },
   "4": {
-   "edges": 37203,
-   "users": 29304
+   "edges": 37200,
+   "users": 29301
   },
   "5": {
-   "edges": 21448,
-   "users": 18229
+   "edges": 21443,
+   "users": 18227
   },
   "6": {
-   "edges": 14103,
-   "users": 12824
+   "edges": 14104,
+   "users": 12825
   }
  },
- "n_stable_edges": 86166,
- "n_stable_users": 62951,
- "modularity": 0.8841052101220838,
- "best_seed": 1,
- "n_circles": 2360,
- "n_circles_ge10": 325,
+ "n_stable_edges": 86180,
+ "n_stable_users": 62964,
+ "modularity": 0.8840651277634678,
+ "best_seed": 3,
+ "n_circles": 2377,
+ "n_circles_ge10": 329,
  "top20_sizes": [
   {
-   "circle_id": 13,
-   "len": 6135
+   "circle_id": 3,
+   "len": 7561
   },
   {
-   "circle_id": 3,
-   "len": 5610
+   "circle_id": 2,
+   "len": 6289
   },
   {
    "circle_id": 5,
-   "len": 4687
+   "len": 4593
   },
   {
-   "circle_id": 9,
-   "len": 3909
-  },
-  {
-   "circle_id": 22,
-   "len": 3459
-  },
-  {
-   "circle_id": 6,
-   "len": 2198
-  },
-  {
-   "circle_id": 12,
-   "len": 2179
-  },
-  {
-   "circle_id": 8,
-   "len": 1766
-  },
-  {
-   "circle_id": 0,
-   "len": 1660
+   "circle_id": 7,
+   "len": 3495
   },
   {
    "circle_id": 1,
+   "len": 2679
+  },
+  {
+   "circle_id": 16,
+   "len": 2232
+  },
+  {
+   "circle_id": 8,
+   "len": 2173
+  },
+  {
+   "circle_id": 40,
+   "len": 1792
+  },
+  {
+   "circle_id": 13,
    "len": 1652
   },
   {
-   "circle_id": 29,
+   "circle_id": 88,
    "len": 1621
   },
   {
    "circle_id": 10,
-   "len": 1516
+   "len": 1575
+  },
+  {
+   "circle_id": 20,
+   "len": 1189
   },
   {
    "circle_id": 25,
-   "len": 1252
-  },
-  {
-   "circle_id": 24,
    "len": 1051
   },
   {
-   "circle_id": 41,
-   "len": 872
+   "circle_id": 17,
+   "len": 942
   },
   {
-   "circle_id": 55,
-   "len": 847
+   "circle_id": 54,
+   "len": 868
   },
   {
-   "circle_id": 27,
+   "circle_id": 22,
    "len": 834
   },
   {
-   "circle_id": 58,
-   "len": 824
+   "circle_id": 36,
+   "len": 816
   },
   {
-   "circle_id": 31,
-   "len": 686
-  },
-  {
-   "circle_id": 44,
+   "circle_id": 50,
    "len": 671
+  },
+  {
+   "circle_id": 19,
+   "len": 458
+  },
+  {
+   "circle_id": 90,
+   "len": 453
   }
  ],
  "seed_ari": {
-  "1v2": 0.9093000215121494,
-  "1v3": 0.9603120224071415
+  "1v2": 0.928662595344385,
+  "1v3": 0.8305413037175383
  },
- "secs": 2.8
+ "secs": 3.4
 }

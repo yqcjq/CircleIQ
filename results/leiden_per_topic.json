@@ -3,63 +3,63 @@
   "topic": "major__AI就业（数智员工）",
   "nodes": 882320,
   "edges": 1491955,
-  "modularity": 0.8431506812852162,
-  "n_circles": 3698,
-  "n_circles_ge10": 527,
+  "modularity": 0.8432050585271978,
+  "n_circles": 3723,
+  "n_circles_ge10": 543,
   "top5_sizes": [
-   89178,
-   80703,
-   71380,
-   67308,
-   56622
+   94233,
+   81730,
+   71193,
+   67428,
+   52714
   ],
-  "secs": 62.3
+  "secs": 86.6
  },
  {
   "topic": "major__体重管理",
-  "nodes": 73214,
-  "edges": 78283,
-  "modularity": 0.853286573077128,
-  "n_circles": 1239,
+  "nodes": 73208,
+  "edges": 78280,
+  "modularity": 0.85326770863536,
+  "n_circles": 1236,
   "n_circles_ge10": 215,
   "top5_sizes": [
    12841,
    5446,
-   4672,
+   4660,
    3921,
-   3628
+   3633
   ],
-  "secs": 1.4
+  "secs": 1.2
  },
  {
   "topic": "major__假期调休",
   "nodes": 247743,
   "edges": 285230,
-  "modularity": 0.914993158066034,
-  "n_circles": 2731,
-  "n_circles_ge10": 319,
+  "modularity": 0.9150452148614254,
+  "n_circles": 2728,
+  "n_circles_ge10": 321,
   "top5_sizes": [
-   26643,
+   26635,
    16673,
-   12715,
-   11419,
-   9164
+   11813,
+   11574,
+   9515
   ],
-  "secs": 7.3
+  "secs": 8.6
  },
  {
   "topic": "major__城市养犬",
   "nodes": 117338,
   "edges": 143542,
-  "modularity": 0.8972239919230576,
-  "n_circles": 1254,
-  "n_circles_ge10": 251,
+  "modularity": 0.8979181999270229,
+  "n_circles": 1264,
+  "n_circles_ge10": 248,
   "top5_sizes": [
-   9548,
-   5469,
-   5359,
-   5330,
-   5177
+   12969,
+   5354,
+   5329,
+   4773,
+   4057
   ],
   "secs": 3.2
  },
@@ -67,48 +67,48 @@
   "topic": "major__婚俗改革",
   "nodes": 133175,
   "edges": 171621,
-  "modularity": 0.8644993060414545,
-  "n_circles": 1970,
-  "n_circles_ge10": 314,
+  "modularity": 0.8646540106587989,
+  "n_circles": 1961,
+  "n_circles_ge10": 307,
   "top5_sizes": [
-   15425,
-   12172,
-   9136,
+   15312,
+   12171,
+   9120,
    7059,
-   6661
+   6701
   ],
-  "secs": 4.6
+  "secs": 4.0
  },
  {
   "topic": "major__延迟退休",
   "nodes": 97344,
   "edges": 108095,
-  "modularity": 0.9394316256075633,
-  "n_circles": 2080,
-  "n_circles_ge10": 303,
+  "modularity": 0.9394940320740882,
+  "n_circles": 2078,
+  "n_circles_ge10": 302,
   "top5_sizes": [
-   6592,
-   5169,
-   4617,
-   2728,
-   2436
+   5651,
+   4580,
+   4376,
+   3126,
+   2728
   ],
-  "secs": 3.2
+  "secs": 2.2
  },
  {
   "topic": "major__生育话题",
   "nodes": 1333068,
   "edges": 2715966,
-  "modularity": 0.7994414486068354,
-  "n_circles": 8742,
-  "n_circles_ge10": 627,
+  "modularity": 0.7993606140687204,
+  "n_circles": 8703,
+  "n_circles_ge10": 589,
   "top5_sizes": [
-   157913,
-   127051,
-   107620,
-   98538,
-   98337
+   174568,
+   127570,
+   99491,
+   97380,
+   96407
   ],
-  "secs": 181.8
+  "secs": 209.0
  }
 ]
