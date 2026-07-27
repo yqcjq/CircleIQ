@@ -25,16 +25,12 @@ def main():
     ap.add_argument("--n-runs", type=int, default=300)
     args = ap.parse_args()
     import polars as pl
-    from simulate import _simulate_many, history_state
+    from simulate import _simulate_one, history_state, params_from_fit
 
     fit = json.loads((DATA / "hawkes" / f"{args.name}.json").read_text())
     ev = np.load(DATA / "hawkes" / "events" / f"{args.name}.npz")
     times, dims = ev["times"].astype(float), ev["dims"].astype(np.int64)
-    mu2d = np.asarray(fit["mu"], dtype=np.float64)
-    if mu2d.ndim == 1:
-        mu2d = mu2d[:, None]
-    mu_edges = np.asarray(fit.get("mu_edges", [fit["T0"], fit["T1"]]), dtype=np.float64)
-    A, beta = np.array(fit["A"]), fit["beta"]
+    P = params_from_fit(fit)
     K, T0, T1 = fit["D"], fit["T0"], fit["T1"]
 
     cat, topic = args.name.split("__", 1)
@@ -69,23 +65,26 @@ def main():
     horizon = args.horizon_h * 3600
     hist_mask = times < t_kol
     ht, hd = times[hist_mask], dims[hist_mask]
-    state_with = history_state(ht, hd, K, beta, t_kol)
-    state_with[d_kol] += beta  # 该帖本身在 t_kol 注入
+    b1, b2 = P["beta1"], P["beta2"]
+    s1_base = history_state(ht, hd, K, b1, t_kol)
+    s2_base = history_state(ht, hd, K, b2, t_kol)
+    s1_with = s1_base.copy(); s1_with[d_kol] += b1  # 该帖本身在 t_kol 注入
+    s2_with = s2_base.copy(); s2_with[d_kol] += b2
 
     n_bins = int(args.horizon_h)
-    from simulate import _simulate_one
-    def run_many(state0, seed0):
+    def run_many(s1_0, s2_0, seed0):
         curves = np.zeros((args.n_runs, n_bins))
         for r in range(args.n_runs):
-            st, sd = _simulate_one(mu2d, mu_edges, A, beta, state0.copy(), t_kol, t_kol + horizon,
-                                   -1.0, 0, 0, seed0 + r)
+            st, sd = _simulate_one(P["mu2d"], P["edges"], P["A1"], b1, P["A2"], b2,
+                                   s1_0.copy(), s2_0.copy(), t_kol, t_kol + horizon,
+                                   -1.0, 0, 0, seed0 + r, 500_000)
             if len(st):
                 b = np.minimum(((st - t_kol) / 3600).astype(int), n_bins - 1)
                 np.add.at(curves[r], b, 1)
         return curves
 
-    cw = run_many(state_with, 1000)
-    cwo = run_many(history_state(ht, hd, K, beta, t_kol), 5000)
+    cw = run_many(s1_with, s2_with, 1000)
+    cwo = run_many(s1_base, s2_base, 5000)
 
     va = (times >= t_kol) & (times < t_kol + horizon)
     actual = np.zeros(n_bins)

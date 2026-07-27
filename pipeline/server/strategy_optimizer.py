@@ -27,12 +27,12 @@ HORIZON = 24 * 3600.0
 def optimize_topic(job):
     name, ms, delays, n_runs = job
     import numpy as np
-    from simulate import simulate_counterfactual
+    from simulate import params_from_fit, simulate_counterfactual
     t0 = time.time()
     fit = json.loads((DATA / "hawkes" / f"{name}.json").read_text())
     ev = np.load(DATA / "hawkes" / "events" / f"{name}.npz")
     times, dims = ev["times"], ev["dims"]
-    params = {"mu": fit["mu"], "A": fit["A"], "beta": fit["beta"]}
+    params = params_from_fit(fit)
     K = fit["D"]
     T0f, T1f = fit["T0"], fit["T1"]
     t_start = T0f + (T1f - T0f) * 0.3

@@ -24,16 +24,13 @@ DATA = Path.home() / "data"
 def validate_one(job):
     name, horizon_h, n_runs = job
     import numpy as np
-    from simulate import _simulate_many, history_state
+    from simulate import _simulate_many, history_state, params_from_fit
     fit = json.loads((DATA / "hawkes" / f"{name}.json").read_text())
     ev = np.load(DATA / "hawkes" / "events" / f"{name}.npz")
     times, dims = ev["times"].astype(float), ev["dims"].astype(np.int64)
     K, T0, T1 = fit["D"], fit["T0"], fit["T1"]
-    mu2d = np.asarray(fit["mu"], dtype=np.float64)
-    if mu2d.ndim == 1:
-        mu2d = mu2d[:, None]
-    mu_edges = np.asarray(fit.get("mu_edges", [T0, T1]), dtype=np.float64)
-    A, beta = np.array(fit["A"]), fit["beta"]
+    P = params_from_fit(fit)
+    mu2d, mu_edges = P["mu2d"], P["edges"]
     H = horizon_h * 3600.0
     span = T1 - T0
     if span <= H * 4:
@@ -48,20 +45,23 @@ def validate_one(job):
         if n_hist < 100:
             continue
         actual = int(((times >= t) & (times < t + H)).sum())
-        state0 = history_state(times[hist], dims[hist], K, beta, t)
+        s1 = history_state(times[hist], dims[hist], K, P["beta1"], t)
+        s2 = history_state(times[hist], dims[hist], K, P["beta2"], t)
         # 严格防泄漏:背景用锚点所在段的前一段 μ(当前段的 μ 拟合用了锚点后的数据)
         b = int(np.clip(np.searchsorted(mu_edges, t, side="right") - 1, 0, mu2d.shape[1] - 1))
         mu_loc = mu2d[:, max(0, b - 1)][:, None].copy()
-        sim = _simulate_many(mu_loc, const_edges, A, beta, state0, t, t + H, -1.0, 0, 0,
-                             n_runs, 99, 200_000)
-        pred = float(sim.sum(1).mean())
+        sim = _simulate_many(mu_loc, const_edges, P["A1"], P["beta1"], P["A2"], P["beta2"],
+                             s1, s2, t, t + H, -1.0, 0, 0, n_runs, 99, 200_000)
+        totals = sim.sum(1)
+        pred = float(np.median(totals))  # 近临界分支比下右尾拉高均值,点预测用中位数
         rate = n_hist / (t - T0)
         poisson = rate * H
         naive = int(((times >= t - H) & (times < t)).sum())
         rows.append({"t_frac": round((t - T0) / span, 2), "actual": actual,
-                     "hawkes": round(pred, 1), "poisson": round(poisson, 1), "naive": naive,
-                     "q10": float(np.quantile(sim.sum(1), 0.1)),
-                     "q90": float(np.quantile(sim.sum(1), 0.9))})
+                     "hawkes": round(pred, 1), "hawkes_mean": round(float(totals.mean()), 1),
+                     "poisson": round(poisson, 1), "naive": naive,
+                     "q10": float(np.quantile(totals, 0.1)),
+                     "q90": float(np.quantile(totals, 0.9))})
     if not rows:
         return {"name": name, "skip": "no valid anchors"}
 
