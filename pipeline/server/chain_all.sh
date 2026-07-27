@@ -3,7 +3,8 @@
 # 用法: nohup bash chain_all.sh > chain_all.log 2>&1 &
 cd /root/data
 source ~/circleiq/venv/bin/activate
-export POLARS_MAX_THREADS=3
+# 线程上限:8-12 进程并行时防 BLAS/polars/numba 超订(24核 load 曾冲到 134)
+export POLARS_MAX_THREADS=3 OMP_NUM_THREADS=3 OPENBLAS_NUM_THREADS=3 MKL_NUM_THREADS=3 NUMBA_NUM_THREADS=2
 
 echo "=== CHAIN: stage_a $(date +%H:%M:%S) ==="
 bash stage_a.sh > stage_a_final.log 2>&1 || { echo "STAGE_A FAILED"; exit 1; }
