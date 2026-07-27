@@ -73,7 +73,7 @@ def main():
     ap.add_argument("--auto-top", type=int, default=0, help="按验证LL增益自动选前N个已拟合事件")
     ap.add_argument("--m", default="1,5,20")
     ap.add_argument("--delays", default="0,21600")
-    ap.add_argument("--n-runs", type=int, default=200)
+    ap.add_argument("--n-runs", type=int, default=100)
     ap.add_argument("--workers", type=int, default=8)
     args = ap.parse_args()
 

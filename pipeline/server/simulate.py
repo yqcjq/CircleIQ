@@ -68,13 +68,13 @@ def _simulate_one(mu, A, beta, state0, t_start, t_end, inject_t, inject_dim, inj
 
 
 @njit(parallel=True, cache=True)
-def _simulate_many(mu, A, beta, state0, t_start, t_end, inject_t, inject_dim, inject_m, n_runs, seed0):
+def _simulate_many(mu, A, beta, state0, t_start, t_end, inject_t, inject_dim, inject_m, n_runs, seed0, max_events=2_000_000):
     """并行 n_runs 次,返回每 run 各维事件数 [n_runs, K]"""
     K = len(mu)
     counts = np.zeros((n_runs, K), dtype=np.int64)
     for r in prange(n_runs):
         ts, ds = _simulate_one(mu, A, beta, state0, t_start, t_end,
-                               inject_t, inject_dim, inject_m, seed0 + r)
+                               inject_t, inject_dim, inject_m, seed0 + r, max_events)
         for i in range(len(ds)):
             counts[r, ds[i]] += 1
     return counts
@@ -89,9 +89,11 @@ def history_state(times, dims, K, beta, t_now):
     return state
 
 
-def simulate_counterfactual(params, history, t_start, horizon_s, inject=None, n_runs=200, seed=42):
+def simulate_counterfactual(params, history, t_start, horizon_s, inject=None, n_runs=200, seed=42,
+                            max_events=200_000):
     """params: dict(mu, A, beta);history: (times, dims) ndarray;
-    inject: None 或 (t_inj, dim, m)。返回 base/injected 的各维事件数分布统计。"""
+    inject: None 或 (t_inj, dim, m)。返回 base/injected 的各维事件数分布统计。
+    max_events: 单次模拟事件数上限(超临界分支比时防爆,命中上限的 run 本身就是失控信号)。"""
     mu = np.asarray(params["mu"], dtype=np.float64)
     A = np.asarray(params["A"], dtype=np.float64)
     beta = float(params["beta"])
@@ -100,11 +102,13 @@ def simulate_counterfactual(params, history, t_start, horizon_s, inject=None, n_
     state0 = history_state(np.asarray(ht, float), np.asarray(hd, np.int64), K, beta, t_start)
     t_end = t_start + horizon_s
 
-    base = _simulate_many(mu, A, beta, state0, t_start, t_end, -1.0, 0, 0, n_runs, seed)
-    out = {"base_mean": base.mean(0), "base_q95_total": float(np.quantile(base.sum(1), 0.95))}
+    base = _simulate_many(mu, A, beta, state0, t_start, t_end, -1.0, 0, 0, n_runs, seed, max_events)
+    out = {"base_mean": base.mean(0), "base_q95_total": float(np.quantile(base.sum(1), 0.95)),
+           "base_cap_hit": float((base.sum(1) >= max_events * 0.98).mean())}
     if inject is not None:
         t_inj, d_inj, m = inject
-        inj = _simulate_many(mu, A, beta, state0, t_start, t_end, float(t_inj), int(d_inj), int(m), n_runs, seed + 10_000)
+        inj = _simulate_many(mu, A, beta, state0, t_start, t_end, float(t_inj), int(d_inj), int(m),
+                             n_runs, seed + 10_000, max_events)
         out["inj_mean"] = inj.mean(0)
         out["delta_mean"] = out["inj_mean"] - out["base_mean"]
         out["delta_total"] = float(out["delta_mean"].sum())
