@@ -1,0 +1,120 @@
+{
+ "pre_only": false,
+ "K": 3,
+ "weight": "n_topics",
+ "k_grid": {
+  "2": {
+   "edges": 693844,
+   "users": 408635
+  },
+  "3": {
+   "edges": 159293,
+   "users": 99334
+  },
+  "4": {
+   "edges": 74916,
+   "users": 50105
+  },
+  "5": {
+   "edges": 43866,
+   "users": 31710
+  },
+  "6": {
+   "edges": 28984,
+   "users": 22503
+  }
+ },
+ "n_stable_edges": 159293,
+ "n_stable_users": 99334,
+ "modularity": 0.8449175156567683,
+ "best_seed": 1,
+ "n_circles": 3199,
+ "n_circles_ge10": 377,
+ "top20_sizes": [
+  {
+   "circle_id": 3,
+   "len": 9529
+  },
+  {
+   "circle_id": 11,
+   "len": 9001
+  },
+  {
+   "circle_id": 0,
+   "len": 8852
+  },
+  {
+   "circle_id": 6,
+   "len": 8241
+  },
+  {
+   "circle_id": 19,
+   "len": 5741
+  },
+  {
+   "circle_id": 14,
+   "len": 5263
+  },
+  {
+   "circle_id": 2,
+   "len": 4574
+  },
+  {
+   "circle_id": 21,
+   "len": 3512
+  },
+  {
+   "circle_id": 40,
+   "len": 2867
+  },
+  {
+   "circle_id": 7,
+   "len": 2505
+  },
+  {
+   "circle_id": 8,
+   "len": 2428
+  },
+  {
+   "circle_id": 26,
+   "len": 2219
+  },
+  {
+   "circle_id": 27,
+   "len": 2056
+  },
+  {
+   "circle_id": 16,
+   "len": 1630
+  },
+  {
+   "circle_id": 15,
+   "len": 1165
+  },
+  {
+   "circle_id": 63,
+   "len": 1051
+  },
+  {
+   "circle_id": 67,
+   "len": 978
+  },
+  {
+   "circle_id": 30,
+   "len": 949
+  },
+  {
+   "circle_id": 24,
+   "len": 853
+  },
+  {
+   "circle_id": 25,
+   "len": 833
+  }
+ ],
+ "seed_ari": {
+  "1v2": 0.806635780970169,
+  "1v3": 0.9350264182801297
+ },
+ "secs": 4.2
+}
