@@ -101,6 +101,8 @@ def fit_topic(job):
 
 
 def main():
+    import os
+    os.environ.setdefault("POLARS_MAX_THREADS", "3")  # 8 worker × 3 线程,避免 8×24 过载
     ap = argparse.ArgumentParser()
     ap.add_argument("--partition", default="partition_stable_K3.parquet")
     ap.add_argument("--category", default="hot", choices=["major", "hot", "case", "all"])
