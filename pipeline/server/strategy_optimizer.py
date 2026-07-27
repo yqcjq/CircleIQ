@@ -51,7 +51,7 @@ def optimize_topic(job):
                 induced = res["delta_total"] - m
                 other = fit["other_dim"]
                 rows.append({
-                    "dim": d, "circle_id": fit["dim_circles"].get(str(d), "other" if d == other else None),
+                    "dim": d, "dim_label": fit.get("dim_labels", {}).get(str(d), str(d)),
                     "m": m, "delay_h": delay / 3600,
                     "induced": round(induced, 1), "roi": round(induced / m, 2),
                     "runaway_prob": round(res["runaway_prob"], 3),

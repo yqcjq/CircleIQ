@@ -67,7 +67,7 @@ def fit_hawkes(times, dims, K, T0, T1, betas=None, l2=1e-3, val_frac=0.0):
     times = np.asarray(times, dtype=np.float64)
     dims = np.asarray(dims, dtype=np.int64)
     if betas is None:
-        betas = [1 / 600, 1 / 1800, 1 / 7200, 1 / 21600, 1 / 86400]  # 10min..1d
+        betas = [1 / 120, 1 / 300, 1 / 600, 1 / 1800, 1 / 7200, 1 / 21600, 1 / 86400]  # 2min..1d
 
     t_split = T1 if val_frac <= 0 else T0 + (T1 - T0) * (1 - val_frac)
     tr = times <= t_split

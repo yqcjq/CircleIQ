@@ -34,7 +34,7 @@ def fit_topic(job):
     import polars as pl
     from hawkes_fit import fit_hawkes
     t0 = time.time()
-    df = pl.concat([pl.read_parquet(f, columns=["md5_author", "md5_mid", "ts"]) for f in files])
+    df = pl.concat([pl.read_parquet(f, columns=["md5_author", "md5_mid", "ts", "auth_tier"]) for f in files])
     df = df.filter(pl.col("md5_mid").is_null() | (pl.int_range(pl.len()).over("md5_mid") == 0))
     df = df.filter(pl.col("ts").is_not_null() & pl.col("md5_author").is_not_null())
     if df.height < min_events:
@@ -43,21 +43,29 @@ def fit_topic(job):
     part = pl.read_parquet(part_file)
     df = df.join(part, on="md5_author", how="left")  # circle_id null = 非稳定用户
 
-    # 维度: 全局候选圈池(pool,固定顺序)中,该议题内事件数过门槛的圈 + other
-    # -> 各事件的 α 矩阵在共享圈上跨事件可比(见 docs/plan-revision-2026-07-27.md 修正2)
+    # 维度: 全局候选圈池中过事件门槛的圈 + 圈外按认证档分 bigv/org/普通 三个通道
+    # -> α 跨事件可比,且"让大V发声"等策略动作直接对应维度(docs/plan-revision 修正2)
     cnt = {r["circle_id"]: r["len"] for r in
            df.filter(pl.col("circle_id").is_in(pool)).group_by("circle_id").len().to_dicts()}
     thresh = max(min_dim_events, int(df.height * 0.002))
-    active = [c for c in pool if cnt.get(c, 0) >= thresh][: D - 1]
-    if not active:
-        return {"category": cat, "topic": topic, "skip": f"no pool circle >= {thresh} events"}
+    active = [c for c in pool if cnt.get(c, 0) >= thresh][: D - 3]
     cmap = {c: i for i, c in enumerate(active)}
-    other = len(active)
-    K = other + 1
+    n_act = len(active)
+    d_bigv, d_org, d_other = n_act, n_act + 1, n_act + 2
+    K = n_act + 3
     df = df.with_columns(
-        pl.col("circle_id").replace_strict(cmap, default=other).alias("dim"))
+        pl.when(pl.col("circle_id").is_in(active))
+          .then(pl.col("circle_id").replace_strict(cmap, default=None))
+          .when(pl.col("auth_tier") == "bigv").then(pl.lit(d_bigv))
+          .when(pl.col("auth_tier") == "org").then(pl.lit(d_org))
+          .otherwise(pl.lit(d_other)).alias("dim"))
 
-    stable_share = float((df["dim"] != other).sum() / df.height)
+    dim_labels = {str(i): f"圈{c}" for c, i in cmap.items()}
+    dim_labels[str(d_bigv)] = "圈外大V"
+    dim_labels[str(d_org)] = "圈外机构"
+    dim_labels[str(d_other)] = "圈外散户"
+
+    stable_share = float((df["dim"] < n_act).sum() / df.height)
     df = df.sort("ts")
     times = df["ts"].to_numpy().astype("float64")
     dims = df["dim"].to_numpy().astype("int64")
@@ -69,7 +77,9 @@ def fit_topic(job):
     res = fit_hawkes(times, dims, K, T0, T1, val_frac=val_frac)
     out = {
         "category": cat, "topic": topic, "n_events": int(len(times)), "D": K,
-        "dim_circles": {str(i): int(c) for c, i in cmap.items()}, "other_dim": other,
+        "dim_labels": dim_labels,
+        "dim_circles": {str(i): int(c) for c, i in cmap.items()},
+        "bigv_dim": d_bigv, "org_dim": d_org, "other_dim": d_other,
         "stable_event_share": round(stable_share, 4),
         "T0": T0, "T1": T1, "span_days": round((T1 - T0) / 86400, 1),
         "beta": res["beta"], "beta_halflife_min": round(np.log(2) / res["beta"] / 60, 1),

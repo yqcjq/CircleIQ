@@ -49,7 +49,14 @@ def main():
     part = pl.read_parquet(DATA / "partition_stable_K3.parquet").filter(pl.col("md5_author") == kol_author)
     circle = int(part["circle_id"][0]) if part.height else None
     dim_map = {int(v): int(k) for k, v in fit["dim_circles"].items()}
-    d_kol = dim_map.get(circle, fit["other_dim"])
+    if circle in dim_map:
+        d_kol = dim_map[circle]
+    elif kol["auth_tier"][0] == "bigv":
+        d_kol = fit.get("bigv_dim", fit["other_dim"])
+    elif kol["auth_tier"][0] == "org":
+        d_kol = fit.get("org_dim", fit["other_dim"])
+    else:
+        d_kol = fit["other_dim"]
 
     horizon = args.horizon_h * 3600
     hist_mask = times < t_kol
