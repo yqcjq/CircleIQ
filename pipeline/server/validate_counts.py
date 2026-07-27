@@ -40,7 +40,8 @@ def validate_one(job):
     actual_by = np.bincount(dims[va], minlength=K)
 
     state0 = history_state(times[tr], dims[tr], K, beta, t_split)
-    sim = _simulate_many(mu, A, beta, state0, t_split, t_split + dur_val, -1.0, 0, 0, n_runs, 777)
+    sim = _simulate_many(mu, A, beta, state0, t_split, t_split + dur_val, -1.0, 0, 0, n_runs, 777,
+                         500_000)
     pred_total = float(sim.sum(1).mean())
     pred_by = sim.mean(0)
 
