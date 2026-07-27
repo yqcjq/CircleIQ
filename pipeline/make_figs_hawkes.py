@@ -61,8 +61,7 @@ def fig_beta_dist(rs, out):
 def fig_alpha_heatmap(fit, out, name=""):
     A = np.array(fit["A"])
     K = fit["D"]
-    labels = [f"圈{fit['dim_circles'][str(i)]}" if str(i) in fit["dim_circles"] else "其他"
-              for i in range(K)]
+    labels = [fit.get("dim_labels", {}).get(str(i), f"维{i}") for i in range(K)]
     fig, ax = plt.subplots(figsize=(5.6, 4.6))
     im = ax.imshow(A, cmap=seq_cmap())
     ax.set_xticks(range(K), labels, rotation=45, ha="right", fontsize=8)
