@@ -8,6 +8,7 @@
 """
 import argparse
 import json
+import multiprocessing as mp
 import time
 import traceback
 from collections import defaultdict
@@ -117,7 +118,7 @@ def main():
     print(f"topics: {len(jobs)}", flush=True)
     results = []
     t0 = time.time()
-    with ProcessPoolExecutor(max_workers=args.workers) as ex:
+    with ProcessPoolExecutor(max_workers=args.workers, mp_context=mp.get_context("spawn")) as ex:
         futs = {ex.submit(fit_topic, j): j for j in jobs}
         for i, fut in enumerate(as_completed(futs), 1):
             j = futs[fut]

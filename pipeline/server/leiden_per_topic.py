@@ -4,6 +4,7 @@
 7 议题并行(leidenalg 单图单线程,跨议题进程池并行)。
 """
 import json
+import multiprocessing as mp
 import time
 import traceback
 from concurrent.futures import ProcessPoolExecutor
@@ -46,7 +47,7 @@ def main():
     files = sorted((DATA / "edges").glob("major__*.parquet"))
     print(f"major topics: {len(files)}", flush=True)
     results = []
-    with ProcessPoolExecutor(max_workers=7) as ex:
+    with ProcessPoolExecutor(max_workers=7, mp_context=mp.get_context("spawn")) as ex:
         for r in ex.map(run_topic, [str(f) for f in files]):
             results.append(r)
             print(json.dumps(r, ensure_ascii=False), flush=True)

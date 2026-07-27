@@ -9,6 +9,7 @@ Step 4: 输出 stable_pairs.parquet / stable_edges_K{K}.parquet / partition_stab
 """
 import argparse
 import json
+import multiprocessing as mp
 import time
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
@@ -85,7 +86,8 @@ def main():
     # Leiden 3 seeds 并行
     print(f"Leiden on K={K} graph: {stable.height:,} edges ...", flush=True)
     results = []
-    with ProcessPoolExecutor(max_workers=3) as ex:
+    # polars(rayon 线程池)+ fork 会死锁,必须 spawn
+    with ProcessPoolExecutor(max_workers=3, mp_context=mp.get_context("spawn")) as ex:
         for r in ex.map(leiden_run, [(str(sf), s, args.weight) for s in (1, 2, 3)]):
             results.append(r)
             print(f"  seed={r[0]} modularity={r[1]:.4f} circles={len(set(r[3]))}", flush=True)

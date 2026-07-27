@@ -11,6 +11,7 @@
 """
 import argparse
 import json
+import multiprocessing as mp
 import os
 import time
 import traceback
@@ -106,7 +107,7 @@ def main():
 
     results = []
     t0 = time.time()
-    with ProcessPoolExecutor(max_workers=args.workers) as ex:
+    with ProcessPoolExecutor(max_workers=args.workers, mp_context=mp.get_context("spawn")) as ex:
         futs = {ex.submit(run, j): j for j in jobs}
         for i, fut in enumerate(as_completed(futs), 1):
             r = fut.result()

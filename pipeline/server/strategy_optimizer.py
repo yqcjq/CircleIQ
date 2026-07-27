@@ -14,6 +14,7 @@
 """
 import argparse
 import json
+import multiprocessing as mp
 import time
 import traceback
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -95,7 +96,7 @@ def main():
 
     jobs = [(n, ms, delays, args.n_runs) for n in names]
     results = []
-    with ProcessPoolExecutor(max_workers=args.workers) as ex:
+    with ProcessPoolExecutor(max_workers=args.workers, mp_context=mp.get_context("spawn")) as ex:
         futs = {ex.submit(optimize_topic, j): j for j in jobs}
         for fut in as_completed(futs):
             j = futs[fut]
