@@ -29,7 +29,7 @@ prof = lf.group_by("md5_author").agg(
     pl.col("topic").n_unique().alias("n_topics"),
 ).with_columns(
     pl.col("auth_tier").fill_null("unknown"),
-    (pl.col("n_followers_max").fill_null(0) + 1).log().alias("log_followers"),
+    (pl.col("n_followers_max").fill_null(0).clip(lower_bound=0) + 1).log().alias("log_followers"),
 )
 
 prof.collect(engine="streaming").write_parquet(DATA / "user_profiles.parquet", compression="zstd")

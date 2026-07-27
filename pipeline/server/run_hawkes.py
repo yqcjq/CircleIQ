@@ -113,6 +113,8 @@ def main():
     jobs = [(c, t, fs, str(DATA / args.partition), pool, args.dims, args.min_events,
              args.min_dim_events, args.val_frac)
             for (c, t), fs in sorted(groups.items())]
+    # 数据量大的事件先跑(--limit 小规模验证时取的就是最大事件)
+    jobs.sort(key=lambda j: -sum(Path(f).stat().st_size for f in j[2]))
     if args.limit:
         jobs = jobs[: args.limit]
     print(f"topics: {len(jobs)}", flush=True)
