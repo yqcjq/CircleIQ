@@ -1,0 +1,114 @@
+[
+ {
+  "topic": "major__AI就业（数智员工）",
+  "nodes": 882320,
+  "edges": 1491955,
+  "modularity": 0.8432050585271978,
+  "n_circles": 3723,
+  "n_circles_ge10": 543,
+  "top5_sizes": [
+   94233,
+   81730,
+   71193,
+   67428,
+   52714
+  ],
+  "secs": 86.6
+ },
+ {
+  "topic": "major__体重管理",
+  "nodes": 73208,
+  "edges": 78280,
+  "modularity": 0.85326770863536,
+  "n_circles": 1236,
+  "n_circles_ge10": 215,
+  "top5_sizes": [
+   12841,
+   5446,
+   4660,
+   3921,
+   3633
+  ],
+  "secs": 1.2
+ },
+ {
+  "topic": "major__假期调休",
+  "nodes": 247743,
+  "edges": 285230,
+  "modularity": 0.9150452148614254,
+  "n_circles": 2728,
+  "n_circles_ge10": 321,
+  "top5_sizes": [
+   26635,
+   16673,
+   11813,
+   11574,
+   9515
+  ],
+  "secs": 8.6
+ },
+ {
+  "topic": "major__城市养犬",
+  "nodes": 117338,
+  "edges": 143542,
+  "modularity": 0.8979181999270229,
+  "n_circles": 1264,
+  "n_circles_ge10": 248,
+  "top5_sizes": [
+   12969,
+   5354,
+   5329,
+   4773,
+   4057
+  ],
+  "secs": 3.2
+ },
+ {
+  "topic": "major__婚俗改革",
+  "nodes": 133175,
+  "edges": 171621,
+  "modularity": 0.8646540106587989,
+  "n_circles": 1961,
+  "n_circles_ge10": 307,
+  "top5_sizes": [
+   15312,
+   12171,
+   9120,
+   7059,
+   6701
+  ],
+  "secs": 4.0
+ },
+ {
+  "topic": "major__延迟退休",
+  "nodes": 97344,
+  "edges": 108095,
+  "modularity": 0.9394940320740882,
+  "n_circles": 2078,
+  "n_circles_ge10": 302,
+  "top5_sizes": [
+   5651,
+   4580,
+   4376,
+   3126,
+   2728
+  ],
+  "secs": 2.2
+ },
+ {
+  "topic": "major__生育话题",
+  "nodes": 1333068,
+  "edges": 2715966,
+  "modularity": 0.7993606140687204,
+  "n_circles": 8703,
+  "n_circles_ge10": 589,
+  "top5_sizes": [
+   174568,
+   127570,
+   99491,
+   97380,
+   96407
+  ],
+  "secs": 209.0
+ }
+]

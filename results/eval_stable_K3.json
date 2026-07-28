@@ -1,0 +1,1176 @@
+{
+ "K": 3,
+ "suffix": "",
+ "n_users": 99348,
+ "n_circles": 3188,
+ "size_dist": {
+  "ge1000": 17,
+  "ge100": 69,
+  "ge10": 370,
+  "top20": [
+   {
+    "circle_id": 0,
+    "len": 9654
+   },
+   {
+    "circle_id": 8,
+    "len": 8946
+   },
+   {
+    "circle_id": 2,
+    "len": 8836
+   },
+   {
+    "circle_id": 11,
+    "len": 6143
+   },
+   {
+    "circle_id": 5,
+    "len": 5647
+   },
+   {
+    "circle_id": 4,
+    "len": 5315
+   },
+   {
+    "circle_id": 7,
+    "len": 4585
+   },
+   {
+    "circle_id": 12,
+    "len": 3301
+   },
+   {
+    "circle_id": 19,
+    "len": 2847
+   },
+   {
+    "circle_id": 3,
+    "len": 2514
+   },
+   {
+    "circle_id": 6,
+    "len": 2431
+   },
+   {
+    "circle_id": 17,
+    "len": 2232
+   },
+   {
+    "circle_id": 15,
+    "len": 2128
+   },
+   {
+    "circle_id": 29,
+    "len": 2003
+   },
+   {
+    "circle_id": 13,
+    "len": 1630
+   },
+   {
+    "circle_id": 66,
+    "len": 1165
+   },
+   {
+    "circle_id": 67,
+    "len": 1051
+   },
+   {
+    "circle_id": 28,
+    "len": 978
+   },
+   {
+    "circle_id": 33,
+    "len": 948
+   },
+   {
+    "circle_id": 23,
+    "len": 853
+   }
+  ]
+ },
+ "baseline_province_entropy": 3.1118286775616837,
+ "top_circles": [
+  {
+   "circle_id": 0,
+   "size": 9654,
+   "top_province": [
+    [
+     "广东",
+     1598
+    ],
+    [
+     "北京",
+     995
+    ],
+    [
+     "上海",
+     899
+    ]
+   ],
+   "province_entropy": 2.981,
+   "auth_dist": {
+    "normal": 8421,
+    "verified": 1123,
+    "bigv": 103,
+    "org": 7
+   },
+   "top_industry": [
+    [
+     "其他",
+     4585
+    ],
+    [
+     "公安",
+     1676
+    ],
+    [
+     "公安，政务",
+     1061
+    ]
+   ],
+   "mean_log_followers": 5.22,
+   "mean_n_posts": 44.8,
+   "mean_n_major_topics": 2.77
+  },
+  {
+   "circle_id": 8,
+   "size": 8946,
+   "top_province": [
+    [
+     "广东",
+     1495
+    ],
+    [
+     "北京",
+     1137
+    ],
+    [
+     "上海",
+     878
+    ]
+   ],
+   "province_entropy": 2.94,
+   "auth_dist": {
+    "normal": 7419,
+    "verified": 1197,
+    "bigv": 309,
+    "org": 21
+   },
+   "top_industry": [
+    [
+     "其他",
+     3530
+    ],
+    [
+     "公安，政务",
+     1351
+    ],
+    [
+     "政务",
+     1287
+    ]
+   ],
+   "mean_log_followers": 6.09,
+   "mean_n_posts": 63.9,
+   "mean_n_major_topics": 3.75
+  },
+  {
+   "circle_id": 2,
+   "size": 8836,
+   "top_province": [
+    [
+     "广东",
+     1085
+    ],
+    [
+     "北京",
+     730
+    ],
+    [
+     "江苏",
+     646
+    ]
+   ],
+   "province_entropy": 3.15,
+   "auth_dist": {
+    "normal": 6896,
+    "verified": 983,
+    "org": 906,
+    "bigv": 51
+   },
+   "top_industry": [
+    [
+     "其他",
+     4594
+    ],
+    [
+     "政务",
+     1425
+    ],
+    [
+     "体育",
+     743
+    ]
+   ],
+   "mean_log_followers": 5.65,
+   "mean_n_posts": 29.0,
+   "mean_n_major_topics": 2.26
+  },
+  {
+   "circle_id": 11,
+   "size": 6143,
+   "top_province": [
+    [
+     "广东",
+     1127
+    ],
+    [
+     "上海",
+     666
+    ],
+    [
+     "北京",
+     587
+    ]
+   ],
+   "province_entropy": 2.964,
+   "auth_dist": {
+    "normal": 5398,
+    "verified": 663,
+    "bigv": 80,
+    "org": 2
+   },
+   "top_industry": [
+    [
+     "其他",
+     2376
+    ],
+    [
+     "公安",
+     919
+    ],
+    [
+     "教育，公安",
+     589
+    ]
+   ],
+   "mean_log_followers": 5.06,
+   "mean_n_posts": 26.1,
+   "mean_n_major_topics": 2.56
+  },
+  {
+   "circle_id": 5,
+   "size": 5647,
+   "top_province": [
+    [
+     "广东",
+     745
+    ],
+    [
+     "北京",
+     709
+    ],
+    [
+     "江苏",
+     445
+    ]
+   ],
+   "province_entropy": 2.999,
+   "auth_dist": {
+    "normal": 4641,
+    "verified": 689,
+    "org": 247,
+    "bigv": 70
+   },
+   "top_industry": [
+    [
+     "其他",
+     1674
+    ],
+    [
+     "公安，政务",
+     1303
+    ],
+    [
+     "公安",
+     773
+    ]
+   ],
+   "mean_log_followers": 5.84,
+   "mean_n_posts": 68.9,
+   "mean_n_major_topics": 3.21
+  },
+  {
+   "circle_id": 4,
+   "size": 5315,
+   "top_province": [
+    [
+     "广东",
+     741
+    ],
+    [
+     "北京",
+     715
+    ],
+    [
+     "上海",
+     593
+    ]
+   ],
+   "province_entropy": 2.958,
+   "auth_dist": {
+    "normal": 4420,
+    "verified": 649,
+    "bigv": 220,
+    "org": 26
+   },
+   "top_industry": [
+    [
+     "其他",
+     1901
+    ],
+    [
+     "公安，政务",
+     1129
+    ],
+    [
+     "政务",
+     636
+    ]
+   ],
+   "mean_log_followers": 6.54,
+   "mean_n_posts": 58.1,
+   "mean_n_major_topics": 3.19
+  },
+  {
+   "circle_id": 7,
+   "size": 4585,
+   "top_province": [
+    [
+     "广东",
+     898
+    ],
+    [
+     "上海",
+     444
+    ],
+    [
+     "北京",
+     370
+    ]
+   ],
+   "province_entropy": 2.944,
+   "auth_dist": {
+    "normal": 4005,
+    "verified": 553,
+    "bigv": 27
+   },
+   "top_industry": [
+    [
+     "其他",
+     2272
+    ],
+    [
+     "公安",
+     717
+    ],
+    [
+     "公安，政务",
+     326
+    ]
+   ],
+   "mean_log_followers": 5.0,
+   "mean_n_posts": 26.7,
+   "mean_n_major_topics": 2.63
+  },
+  {
+   "circle_id": 12,
+   "size": 3301,
+   "top_province": [
+    [
+     "广东",
+     631
+    ],
+    [
+     "浙江",
+     239
+    ],
+    [
+     "北京",
+     222
+    ]
+   ],
+   "province_entropy": 3.011,
+   "auth_dist": {
+    "normal": 2885,
+    "verified": 354,
+    "bigv": 62
+   },
+   "top_industry": [
+    [
+     "其他",
+     1255
+    ],
+    [
+     "公安",
+     706
+    ],
+    [
+     "教育，公安",
+     403
+    ]
+   ],
+   "mean_log_followers": 4.83,
+   "mean_n_posts": 20.6,
+   "mean_n_major_topics": 2.36
+  },
+  {
+   "circle_id": 19,
+   "size": 2847,
+   "top_province": [
+    [
+     "广东",
+     338
+    ],
+    [
+     "山东",
+     212
+    ],
+    [
+     "北京",
+     202
+    ]
+   ],
+   "province_entropy": 3.154,
+   "auth_dist": {
+    "normal": 2727,
+    "verified": 80,
+    "bigv": 32,
+    "org": 8
+   },
+   "top_industry": [
+    [
+     "其他",
+     1596
+    ],
+    [
+     "教育，政务",
+     728
+    ],
+    [
+     "政务",
+     136
+    ]
+   ],
+   "mean_log_followers": 4.71,
+   "mean_n_posts": 33.2,
+   "mean_n_major_topics": 3.56
+  },
+  {
+   "circle_id": 3,
+   "size": 2514,
+   "top_province": [
+    [
+     "广东",
+     411
+    ],
+    [
+     "江苏",
+     198
+    ],
+    [
+     "辽宁",
+     148
+    ]
+   ],
+   "province_entropy": 3.065,
+   "auth_dist": {
+    "normal": 1726,
+    "verified": 624,
+    "bigv": 152,
+    "org": 12
+   },
+   "top_industry": [
+    [
+     "其他",
+     1502
+    ],
+    [
+     "政务",
+     138
+    ],
+    [
+     "公安",
+     133
+    ]
+   ],
+   "mean_log_followers": 6.85,
+   "mean_n_posts": 51.8,
+   "mean_n_major_topics": 3.34
+  },
+  {
+   "circle_id": 6,
+   "size": 2431,
+   "top_province": [
+    [
+     "福建",
+     518
+    ],
+    [
+     "广东",
+     273
+    ],
+    [
+     "江苏",
+     270
+    ]
+   ],
+   "province_entropy": 2.87,
+   "auth_dist": {
+    "normal": 2165,
+    "verified": 188,
+    "bigv": 74,
+    "org": 4
+   },
+   "top_industry": [
+    [
+     "其他",
+     1937
+    ],
+    [
+     "政务",
+     166
+    ],
+    [
+     "公安",
+     70
+    ]
+   ],
+   "mean_log_followers": 6.47,
+   "mean_n_posts": 114.4,
+   "mean_n_major_topics": 4.03
+  },
+  {
+   "circle_id": 17,
+   "size": 2232,
+   "top_province": [
+    [
+     "山东",
+     371
+    ],
+    [
+     "安徽",
+     194
+    ],
+    [
+     "山西",
+     148
+    ]
+   ],
+   "province_entropy": 3.055,
+   "auth_dist": {
+    "org": 1516,
+    "normal": 677,
+    "verified": 37,
+    "bigv": 2
+   },
+   "top_industry": [
+    [
+     "司法，政务",
+     1133
+    ],
+    [
+     "公安，政务",
+     393
+    ],
+    [
+     "政务",
+     168
+    ]
+   ],
+   "mean_log_followers": 6.61,
+   "mean_n_posts": 36.8,
+   "mean_n_major_topics": 2.66
+  },
+  {
+   "circle_id": 15,
+   "size": 2128,
+   "top_province": [
+    [
+     "广东",
+     406
+    ],
+    [
+     "上海",
+     207
+    ],
+    [
+     "浙江",
+     165
+    ]
+   ],
+   "province_entropy": 2.935,
+   "auth_dist": {
+    "normal": 1707,
+    "verified": 367,
+    "bigv": 54
+   },
+   "top_industry": [
+    [
+     "其他",
+     922
+    ],
+    [
+     "公安",
+     512
+    ],
+    [
+     "教育，公安",
+     153
+    ]
+   ],
+   "mean_log_followers": 5.7,
+   "mean_n_posts": 22.3,
+   "mean_n_major_topics": 2.36
+  },
+  {
+   "circle_id": 29,
+   "size": 2003,
+   "top_province": [
+    [
+     "河南",
+     285
+    ],
+    [
+     "广东",
+     242
+    ],
+    [
+     "山东",
+     165
+    ]
+   ],
+   "province_entropy": 3.002,
+   "auth_dist": {
+    "normal": 1668,
+    "verified": 263,
+    "bigv": 54,
+    "org": 18
+   },
+   "top_industry": [
+    [
+     "其他",
+     1238
+    ],
+    [
+     "娱乐",
+     294
+    ],
+    [
+     "政务",
+     85
+    ]
+   ],
+   "mean_log_followers": 6.43,
+   "mean_n_posts": 60.7,
+   "mean_n_major_topics": 3.48
+  },
+  {
+   "circle_id": 13,
+   "size": 1630,
+   "top_province": [
+    [
+     "广东",
+     231
+    ],
+    [
+     "北京",
+     137
+    ],
+    [
+     "江苏",
+     129
+    ]
+   ],
+   "province_entropy": 3.094,
+   "auth_dist": {
+    "normal": 1330,
+    "verified": 273,
+    "bigv": 24,
+    "org": 3
+   },
+   "top_industry": [
+    [
+     "体育",
+     1506
+    ],
+    [
+     "体育，政务",
+     57
+    ],
+    [
+     "其他",
+     34
+    ]
+   ],
+   "mean_log_followers": 5.04,
+   "mean_n_posts": 22.4,
+   "mean_n_major_topics": 0.86
+  },
+  {
+   "circle_id": 66,
+   "size": 1165,
+   "top_province": [
+    [
+     "山西",
+     330
+    ],
+    [
+     "吉林",
+     312
+    ],
+    [
+     "湖南",
+     200
+    ]
+   ],
+   "province_entropy": 2.017,
+   "auth_dist": {
+    "normal": 981,
+    "org": 160,
+    "verified": 24
+   },
+   "top_industry": [
+    [
+     "政务",
+     729
+    ],
+    [
+     "其他",
+     314
+    ],
+    [
+     "游戏",
+     70
+    ]
+   ],
+   "mean_log_followers": 3.72,
+   "mean_n_posts": 17.4,
+   "mean_n_major_topics": 3.12
+  },
+  {
+   "circle_id": 67,
+   "size": 1051,
+   "top_province": [
+    [
+     "江苏",
+     293
+    ],
+    [
+     "福建",
+     133
+    ],
+    [
+     "浙江",
+     103
+    ]
+   ],
+   "province_entropy": 2.391,
+   "auth_dist": {
+    "normal": 1050,
+    "verified": 1
+   },
+   "top_industry": [
+    [
+     "其他",
+     1028
+    ],
+    [
+     "娱乐",
+     18
+    ],
+    [
+     "母婴，政务",
+     4
+    ]
+   ],
+   "mean_log_followers": 6.28,
+   "mean_n_posts": 67.8,
+   "mean_n_major_topics": 3.31
+  },
+  {
+   "circle_id": 28,
+   "size": 978,
+   "top_province": [
+    [
+     "福建",
+     896
+    ],
+    [
+     "北京",
+     26
+    ],
+    [
+     "浙江",
+     8
+    ]
+   ],
+   "province_entropy": 0.496,
+   "auth_dist": {
+    "normal": 977,
+    "org": 1
+   },
+   "top_industry": [
+    [
+     "政务",
+     288
+    ],
+    [
+     "教育",
+     165
+    ],
+    [
+     "其他",
+     144
+    ]
+   ],
+   "mean_log_followers": 1.24,
+   "mean_n_posts": 8.3,
+   "mean_n_major_topics": 2.63
+  },
+  {
+   "circle_id": 33,
+   "size": 948,
+   "top_province": [
+    [
+     "河南",
+     111
+    ],
+    [
+     "北京",
+     102
+    ],
+    [
+     "广东",
+     79
+    ]
+   ],
+   "province_entropy": 3.107,
+   "auth_dist": {
+    "normal": 848,
+    "verified": 87,
+    "org": 7,
+    "bigv": 6
+   },
+   "top_industry": [
+    [
+     "司法，政务",
+     486
+    ],
+    [
+     "司法",
+     158
+    ],
+    [
+     "教育，司法，政务",
+     104
+    ]
+   ],
+   "mean_log_followers": 4.67,
+   "mean_n_posts": 24.0,
+   "mean_n_major_topics": 2.65
+  },
+  {
+   "circle_id": 23,
+   "size": 853,
+   "top_province": [
+    [
+     "广东",
+     43
+    ],
+    [
+     "江西",
+     40
+    ],
+    [
+     "海南",
+     39
+    ]
+   ],
+   "province_entropy": 3.226,
+   "auth_dist": {
+    "normal": 839,
+    "org": 8,
+    "verified": 5,
+    "bigv": 1
+   },
+   "top_industry": [
+    [
+     "公安",
+     182
+    ],
+    [
+     "其他",
+     154
+    ],
+    [
+     "司法，公安，政务",
+     87
+    ]
+   ],
+   "mean_log_followers": 5.57,
+   "mean_n_posts": 13.1,
+   "mean_n_major_topics": 2.06
+  }
+ ],
+ "activation": {
+  "AI就业（数智员工）": {
+   "events": 2247196,
+   "stable_events": 407694,
+   "by_circle": {
+    "12": 3935,
+    "66": 5103,
+    "6": 45589,
+    "3": 19632,
+    "0": 20738,
+    "15": 2706,
+    "33": 2068,
+    "7": 8378,
+    "13": 836,
+    "28": 4151,
+    "19": 21320,
+    "4": 38548,
+    "67": 4013,
+    "11": 9009,
+    "29": 16618,
+    "5": 30766,
+    "8": 52211,
+    "23": 798,
+    "17": 6244,
+    "2": 22759
+   },
+   "stable_share": 0.1814
+  },
+  "体重管理": {
+   "events": 1133918,
+   "stable_events": 30077,
+   "by_circle": {
+    "6": 360,
+    "66": 2109,
+    "2": 4193,
+    "8": 1237,
+    "4": 696,
+    "17": 1051,
+    "15": 34,
+    "0": 446,
+    "12": 52,
+    "7": 124,
+    "28": 909,
+    "5": 2806,
+    "29": 746,
+    "19": 369,
+    "67": 48,
+    "3": 606,
+    "13": 105,
+    "23": 94,
+    "11": 113,
+    "33": 20
+   },
+   "stable_share": 0.0265
+  },
+  "假期调休": {
+   "events": 2200777,
+   "stable_events": 103822,
+   "by_circle": {
+    "29": 3091,
+    "2": 7707,
+    "11": 3007,
+    "5": 9629,
+    "33": 1252,
+    "12": 1225,
+    "15": 841,
+    "23": 489,
+    "19": 1586,
+    "13": 106,
+    "28": 180,
+    "7": 2330,
+    "3": 7375,
+    "67": 805,
+    "8": 9433,
+    "6": 6113,
+    "0": 6171,
+    "17": 2319,
+    "4": 5135,
+    "66": 921
+   },
+   "stable_share": 0.0472
+  },
+  "城市养犬": {
+   "events": 1669726,
+   "stable_events": 68650,
+   "by_circle": {
+    "4": 3049,
+    "17": 2129,
+    "12": 963,
+    "23": 114,
+    "13": 33,
+    "66": 1,
+    "5": 5204,
+    "3": 812,
+    "7": 2251,
+    "11": 3013,
+    "33": 630,
+    "2": 1875,
+    "8": 22666,
+    "0": 5002,
+    "19": 1690,
+    "29": 875,
+    "15": 841,
+    "6": 3715,
+    "67": 7
+   },
+   "stable_share": 0.0411
+  },
+  "婚俗改革": {
+   "events": 2000222,
+   "stable_events": 39912,
+   "by_circle": {
+    "2": 1438,
+    "11": 1947,
+    "19": 1922,
+    "4": 2102,
+    "7": 693,
+    "8": 9974,
+    "5": 3149,
+    "6": 1835,
+    "33": 73,
+    "13": 37,
+    "17": 415,
+    "0": 5023,
+    "23": 117,
+    "29": 1036,
+    "15": 689,
+    "3": 651,
+    "12": 915,
+    "66": 8,
+    "67": 5
+   },
+   "stable_share": 0.02
+  },
+  "延迟退休": {
+   "events": 2626936,
+   "stable_events": 43441,
+   "by_circle": {
+    "8": 6304,
+    "0": 1868,
+    "29": 1186,
+    "12": 286,
+    "23": 93,
+    "67": 959,
+    "6": 3010,
+    "11": 691,
+    "33": 482,
+    "2": 2421,
+    "5": 2960,
+    "13": 56,
+    "15": 172,
+    "66": 1,
+    "3": 1878,
+    "4": 8084,
+    "19": 1074,
+    "17": 1347,
+    "7": 443
+   },
+   "stable_share": 0.0165
+  },
+  "生育话题": {
+   "events": 17184660,
+   "stable_events": 1637647,
+   "by_circle": {
+    "0": 233708,
+    "17": 18680,
+    "29": 62160,
+    "33": 9537,
+    "19": 55819,
+    "13": 2531,
+    "67": 46603,
+    "4": 114078,
+    "5": 119984,
+    "6": 130804,
+    "15": 22152,
+    "12": 31037,
+    "23": 4074,
+    "66": 6360,
+    "28": 1680,
+    "3": 41641,
+    "2": 58810,
+    "8": 261094,
+    "7": 59273,
+    "11": 75672
+   },
+   "stable_share": 0.0953
+  }
+ },
+ "ari_vs_topic": {
+  "major__AI就业（数智员工）": {
+   "common_users": 67571,
+   "ari": 0.3188
+  },
+  "major__体重管理": {
+   "common_users": 13580,
+   "ari": 0.4747
+  },
+  "major__假期调休": {
+   "common_users": 37789,
+   "ari": 0.3428
+  },
+  "major__城市养犬": {
+   "common_users": 25675,
+   "ari": 0.4496
+  },
+  "major__婚俗改革": {
+   "common_users": 20133,
+   "ari": 0.5111
+  },
+  "major__延迟退休": {
+   "common_users": 20104,
+   "ari": 0.3766
+  },
+  "major__生育话题": {
+   "common_users": 78924,
+   "ari": 0.323
+  }
+ },
+ "stable_vs_rest": [
+  {
+   "is_stable": false,
+   "users": 12134439,
+   "mean_log_followers": 3.07,
+   "mean_posts": 3.3,
+   "mean_major_topics": 0.81,
+   "bigv_rate": 0.0005,
+   "org_rate": 0.0096
+  },
+  {
+   "is_stable": null,
+   "users": 1,
+   "mean_log_followers": 22.93,
+   "mean_posts": 285614.0,
+   "mean_major_topics": 2.0,
+   "bigv_rate": 0.0,
+   "org_rate": 0.0
+  },
+  {
+   "is_stable": true,
+   "users": 99348,
+   "mean_log_followers": 5.45,
+   "mean_posts": 40.7,
+   "mean_major_topics": 2.86,
+   "bigv_rate": 0.0178,
+   "org_rate": 0.0547
+  }
+ ],
+ "secs": 2.7
+}

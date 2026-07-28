@@ -1,0 +1,77 @@
+{
+ "n": 312,
+ "by_dominant_sentiment": [
+  {
+   "dominant_sent": "愤怒",
+   "n": 145,
+   "branching_med": 0.9547,
+   "cross_med": 0.4632,
+   "halflife_med": 1.4
+  },
+  {
+   "dominant_sent": "中性主导",
+   "n": 114,
+   "branching_med": 0.9461,
+   "cross_med": 0.3945,
+   "halflife_med": 1.4
+  },
+  {
+   "dominant_sent": "喜悦",
+   "n": 25,
+   "branching_med": 0.9468,
+   "cross_med": 0.3302,
+   "halflife_med": 1.4
+  },
+  {
+   "dominant_sent": "惊奇",
+   "n": 22,
+   "branching_med": 0.9614,
+   "cross_med": 0.4356,
+   "halflife_med": 1.4
+  },
+  {
+   "dominant_sent": "悲伤",
+   "n": 4,
+   "branching_med": 0.94,
+   "cross_med": 0.4095,
+   "halflife_med": 1.4
+  },
+  {
+   "dominant_sent": "恐惧",
+   "n": 2,
+   "branching_med": 0.9674,
+   "cross_med": 0.407,
+   "halflife_med": 1.4
+  }
+ ],
+ "ols_branching": {
+  "r2": 0.016,
+  "coef": {
+   "sent_愤怒": -0.0611,
+   "sent_悲伤": -0.1949,
+   "sent_恐惧": 0.1247,
+   "sent_惊奇": -0.0322,
+   "sent_喜悦": 0.0083,
+   "sensitive_share": 0.0276,
+   "bigv_share": 0.6931,
+   "org_share": 0.0022,
+   "stable_share": 0.327
+  },
+  "intercept": -0.1085
+ },
+ "ols_cross_excite_share": {
+  "r2": 0.2397,
+  "coef": {
+   "sent_愤怒": -0.0317,
+   "sent_悲伤": 0.1874,
+   "sent_恐惧": -0.1025,
+   "sent_惊奇": -0.0451,
+   "sent_喜悦": -0.141,
+   "sensitive_share": 0.0745,
+   "bigv_share": 2.239,
+   "org_share": 0.031,
+   "stable_share": 0.7566
+  },
+  "intercept": 0.3025
+ }
+}

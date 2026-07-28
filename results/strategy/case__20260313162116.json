@@ -1,0 +1,244 @@
+{
+ "name": "case__20260313162116",
+ "K": 3,
+ "t_start_frac": 0.3,
+ "horizon_h": 24,
+ "n_runs": 100,
+ "base_mean_total": 168.94,
+ "base_q95_total": 259.74999999999994,
+ "grid": [
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 20,
+   "delay_h": 6.0,
+   "induced": 73.5,
+   "roi": 3.68,
+   "runaway_prob": 0.04,
+   "delta_other_share": 0.983
+  },
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 20,
+   "delay_h": 0.0,
+   "induced": 68.1,
+   "roi": 3.41,
+   "runaway_prob": 0.04,
+   "delta_other_share": 0.983
+  },
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 5,
+   "delay_h": 6.0,
+   "induced": 12.5,
+   "roi": 2.51,
+   "runaway_prob": 0.0,
+   "delta_other_share": 1.027
+  },
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 5,
+   "delay_h": 0.0,
+   "induced": 6.9,
+   "roi": 1.37,
+   "runaway_prob": 0.0,
+   "delta_other_share": 1.047
+  },
+  {
+   "dim": 1,
+   "dim_label": "圈外机构",
+   "m": 20,
+   "delay_h": 0.0,
+   "induced": 23.7,
+   "roi": 1.18,
+   "runaway_prob": 0.0,
+   "delta_other_share": -0.016
+  },
+  {
+   "dim": 1,
+   "dim_label": "圈外机构",
+   "m": 20,
+   "delay_h": 6.0,
+   "induced": 20.7,
+   "roi": 1.03,
+   "runaway_prob": 0.0,
+   "delta_other_share": -0.07
+  },
+  {
+   "dim": 0,
+   "dim_label": "圈外大V",
+   "m": 20,
+   "delay_h": 6.0,
+   "induced": -0.3,
+   "roi": -0.02,
+   "runaway_prob": 0.0,
+   "delta_other_share": -0.128
+  },
+  {
+   "dim": 0,
+   "dim_label": "圈外大V",
+   "m": 20,
+   "delay_h": 0.0,
+   "induced": -6.9,
+   "roi": -0.34,
+   "runaway_prob": 0.0,
+   "delta_other_share": -0.696
+  },
+  {
+   "dim": 1,
+   "dim_label": "圈外机构",
+   "m": 5,
+   "delay_h": 6.0,
+   "induced": -1.8,
+   "roi": -0.35,
+   "runaway_prob": 0.0,
+   "delta_other_share": -2.245
+  },
+  {
+   "dim": 1,
+   "dim_label": "圈外机构",
+   "m": 5,
+   "delay_h": 0.0,
+   "induced": -2.3,
+   "roi": -0.45,
+   "runaway_prob": 0.0,
+   "delta_other_share": -2.516
+  },
+  {
+   "dim": 0,
+   "dim_label": "圈外大V",
+   "m": 5,
+   "delay_h": 6.0,
+   "induced": -5.6,
+   "roi": -1.12,
+   "runaway_prob": 0.0,
+   "delta_other_share": -5350000000.0
+  },
+  {
+   "dim": 0,
+   "dim_label": "圈外大V",
+   "m": 5,
+   "delay_h": 0.0,
+   "induced": -9.1,
+   "roi": -1.82,
+   "runaway_prob": 0.0,
+   "delta_other_share": -9070000000.0
+  },
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 1,
+   "delay_h": 6.0,
+   "induced": -4.8,
+   "roi": -4.81,
+   "runaway_prob": 0.0,
+   "delta_other_share": -2670000000.0
+  },
+  {
+   "dim": 1,
+   "dim_label": "圈外机构",
+   "m": 1,
+   "delay_h": 6.0,
+   "induced": -6.4,
+   "roi": -6.45,
+   "runaway_prob": 0.0,
+   "delta_other_share": -6550000000.0
+  },
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 1,
+   "delay_h": 0.0,
+   "induced": -7.6,
+   "roi": -7.6,
+   "runaway_prob": 0.0,
+   "delta_other_share": -5790000000.0
+  },
+  {
+   "dim": 0,
+   "dim_label": "圈外大V",
+   "m": 1,
+   "delay_h": 6.0,
+   "induced": -8.7,
+   "roi": -8.69,
+   "runaway_prob": 0.0,
+   "delta_other_share": -7830000000.0
+  },
+  {
+   "dim": 1,
+   "dim_label": "圈外机构",
+   "m": 1,
+   "delay_h": 0.0,
+   "induced": -9.3,
+   "roi": -9.27,
+   "runaway_prob": 0.0,
+   "delta_other_share": -9570000000.0
+  },
+  {
+   "dim": 0,
+   "dim_label": "圈外大V",
+   "m": 1,
+   "delay_h": 0.0,
+   "induced": -10.8,
+   "roi": -10.8,
+   "runaway_prob": 0.0,
+   "delta_other_share": -10300000000.0
+  }
+ ],
+ "top5": [
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 20,
+   "delay_h": 6.0,
+   "induced": 73.5,
+   "roi": 3.68,
+   "runaway_prob": 0.04,
+   "delta_other_share": 0.983
+  },
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 20,
+   "delay_h": 0.0,
+   "induced": 68.1,
+   "roi": 3.41,
+   "runaway_prob": 0.04,
+   "delta_other_share": 0.983
+  },
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 5,
+   "delay_h": 6.0,
+   "induced": 12.5,
+   "roi": 2.51,
+   "runaway_prob": 0.0,
+   "delta_other_share": 1.027
+  },
+  {
+   "dim": 2,
+   "dim_label": "圈外散户",
+   "m": 5,
+   "delay_h": 0.0,
+   "induced": 6.9,
+   "roi": 1.37,
+   "runaway_prob": 0.0,
+   "delta_other_share": 1.047
+  },
+  {
+   "dim": 1,
+   "dim_label": "圈外机构",
+   "m": 20,
+   "delay_h": 0.0,
+   "induced": 23.7,
+   "roi": 1.18,
+   "runaway_prob": 0.0,
+   "delta_other_share": -0.016
+  }
+ ],
+ "secs": 0.4
+}
