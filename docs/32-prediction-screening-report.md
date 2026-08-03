@@ -88,7 +88,7 @@ Poisson 外推(全历史均速)。
 (naive 的中位 APE=0 是零膨胀的产物:60% 锚点 y=0 且 naive 也报 0,平局不计入胜率——
 胜率 34% 要在"60% 样本双方全对"的背景下读。)
 
-![筛选总榜](figures/f_screen_male.png)
+![筛选总榜](figures/32-screen_male.png)
 
 ### 显著性(按事件 bootstrap ×400,MALE 差,95% CI)
 
@@ -102,7 +102,7 @@ Poisson 外推(全历史均速)。
 
 ## 4. 分层与案例
 
-![量级分层](figures/f_screen_strata.png)
+![量级分层](figures/32-screen_strata.png)
 
 按 24h 真实量级分层(n=1284/459/257/146):
 - **y=0 层**(60%): GRU 0.130 最稳;Hawkes 0.399 最差——近临界分支比在休眠期仍持续
@@ -112,8 +112,8 @@ Poisson 外推(全历史均速)。
   学习模型在这里没有超额价值;SIR/EvolveGCN 在此层崩坏(2.1–2.3)
 - 圈间:两圈排名一致(GRU 圈0 0.438 / 圈5 0.397),圈 5 略易预测(活动更集中于大事件)
 
-![案例轨迹](figures/f_screen_cases.png)
-![散点](figures/f_screen_scatter.png)
+![案例轨迹](figures/32-screen_cases.png)
+![散点](figures/32-screen_scatter.png)
 
 案例图可见典型形态:衰减期各模型都贴住;再燃点(如 20260318191525 第 14 天)所有模型都
 滞后一拍(naive 滞后最明显);GRU/GBDT 在峰值处系统性低估(log 目标的收缩效应),但量级
@@ -160,5 +160,5 @@ Poisson 外推(全历史均速)。
 | 数据面板 | 服务器 `~/circleiq/pred_screen/out/{events/*.npz, members.npz, anchors.parquet, panel.json}` |
 | 各模型预测 | `out/preds/*.parquet`(11 模型统一 schema) |
 | 结果汇总 | `out/screening_results.json`、`out/analysis.json`(仓库 `experiments/pred_screen/results/` 有副本) |
-| 图 | `docs/figures/f_screen_{male,strata,cases,scatter}.png` |
+| 图 | `docs/figures/32-screen_{male,strata,cases,scatter}.png` |
 | 代码 | `experiments/pred_screen/*.py`(common/build_dataset/baselines/fit_{sir,ic,hawkes6}/train_{gbdt,gru,tgn,evolvegcn}/evaluate/analyze_results/make_figs_screen) |

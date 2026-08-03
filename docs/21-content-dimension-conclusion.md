@@ -3,7 +3,7 @@
 **日期**: 2026-07-26
 **状态**: 阶段性收敛,继续推进阶段 C
 **产出角色**: 论文素材 + 项目决策依据
-**关联文档**: [content-dimension-experiment.md](content-dimension-experiment.md) 详细实验数据
+**关联文档**: [20-content-dimension-experiment.md](20-content-dimension-experiment.md) 详细实验数据
 
 ---
 
@@ -205,7 +205,7 @@
 - GNN 只尝试了 GraphSAGE + 无监督对比学习,未尝试 DGI/BGRL/监督式
 
 **未来可能的探索**(不在本竞赛范围内):
-- 跨话题的元圈层原型识别(见 [hierarchical-circle-framework.md](hierarchical-circle-framework.md))
+- 跨话题的元圈层原型识别(见 [hierarchical-circle-framework.md](archive/hierarchical-circle-framework.md))
 - DGI/BGRL 或监督式 GNN 的更好融合尝试
 - 水军过滤后的圈层稳定性验证
 

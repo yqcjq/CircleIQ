@@ -4,9 +4,9 @@
 **状态**: 方法论文档,与阶段 A 一起实施
 **位置**: 圈层识别的主线定义,替代之前的"单议题 Leiden"作为主线
 **关联文档**:
-- [circle-identification-report.md](circle-identification-report.md) — 单议题 Leiden POC(现降级为中间产物)
-- [hierarchical-circle-framework.md](hierarchical-circle-framework.md) — 元圈层类型学(现改为稳定圈的类型学补充)
-- [content-dimension-conclusion.md](content-dimension-conclusion.md) — 内容维度实验结论(附:发现结构信号独立)
+- [circle-identification-report.md](archive/circle-identification-report.md) — 单议题 Leiden POC(现降级为中间产物)
+- [hierarchical-circle-framework.md](archive/hierarchical-circle-framework.md) — 元圈层类型学(现改为稳定圈的类型学补充)
+- [21-content-dimension-conclusion.md](21-content-dimension-conclusion.md) — 内容维度实验结论(附:发现结构信号独立)
 
 ---
 
@@ -127,13 +127,13 @@ K 决定"多稳定才算稳定":
 - 也可以用来定义单议题级别的"话题动员图"(某议题激活了哪些人),但不作为稳定圈的定义
 
 **保留意义**:
-- 单议题 Leiden 已跑通(见 [circle-identification-report.md](circle-identification-report.md))
+- 单议题 Leiden 已跑通(见 [circle-identification-report.md](archive/circle-identification-report.md))
 - 数据和脚本可复用
 - 论文里可以对比"单议题圈 vs 稳定互动圈"证明后者更有意义
 
 ### 3.2 与元圈层类型学的关系
 
-之前 [hierarchical-circle-framework.md](hierarchical-circle-framework.md) 里的元圈层:
+之前 [hierarchical-circle-framework.md](archive/hierarchical-circle-framework.md) 里的元圈层:
 - 是对**单议题圈**做行为特征聚类,得到"圈的类型"
 - 每种类型的圈在不同议题里成员完全不同
 
@@ -329,7 +329,7 @@ partition = leidenalg.find_partition(G_stable, ...)
 
 1. **等阶段 A 多议题索引跑完**(3-4 小时)
 2. **实施本文档的算法**(Step B-E,1-2 小时)
-3. **写实验报告**类似 [content-dimension-experiment.md](content-dimension-experiment.md)
+3. **写实验报告**类似 [20-content-dimension-experiment.md](20-content-dimension-experiment.md)
 4. **决定要不要做稳定圈的元圈层类型学**(阶段 A 后半)
 5. **传播预测层基于稳定圈建模**(阶段 C)
 

@@ -301,7 +301,7 @@ GNN 作为主算法不适合(结构信号弱、覆盖低),但可以作为**论�
 - BGE 用的用户级 embedding 是简单拼接前 5 帖,可能有更好的池化方式
 
 参见:
-- [circle-identification-report.md](circle-identification-report.md) — Leiden POC
-- [hierarchical-circle-framework.md](hierarchical-circle-framework.md) — 分层框架
-- [content-dimension-plan.md](content-dimension-plan.md) — 内容维度方案(设计版,本文档是实施版)
+- [circle-identification-report.md](archive/circle-identification-report.md) — Leiden POC
+- [hierarchical-circle-framework.md](archive/hierarchical-circle-framework.md) — 分层框架
+- [content-dimension-plan.md](archive/content-dimension-plan.md) — 内容维度方案(设计版,本文档是实施版)
 - [../plans/master-todo.md](../plans/master-todo.md) — 项目总 to-do

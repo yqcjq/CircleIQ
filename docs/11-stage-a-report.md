@@ -2,19 +2,19 @@
 
 **日期**: 2026-07-27 · **GPU终版口径** · **数据**: 382 个数据单元(7 重大议题 + 263 热点事件 + 112 传播案例,4385 万帖,去重复 zip 后)
 **代码**: `pipeline/server/{build_edges,stable_circles,leiden_per_topic,eval_stable,user_profiles}.py` · **产物**: ppio-gpu `~/data/` + 仓库 `results/`
-**面向读者友好版**: 见 [circle-identification-results.md](circle-identification-results.md)
+**面向读者友好版**: 见 [12-circle-identification-results.md](12-circle-identification-results.md)
 
 ---
 
 ## 1. 问题与方法
 
-单议题互动图上的社区是**事件观测**而非**社交结构**(方法论转向的完整论证见 [persistent-community-framework.md](persistent-community-framework.md))。本阶段在全量数据上落地"跨议题稳定互动圈":
+单议题互动图上的社区是**事件观测**而非**社交结构**(方法论转向的完整论证见 [10-persistent-community-framework.md](10-persistent-community-framework.md))。本阶段在全量数据上落地"跨议题稳定互动圈":
 
 1. 每个数据单元独立构建转发互动边表(共 382 单元 → **1092 万条互动事件,906 万条聚合边**)
 2. 对每对用户统计共同出现互动的单元数 `n_topics(u,v)`
 3. 过滤 `n_topics ≥ K` 得稳定图,其上跑 Leiden(3 种子取最优)
 
-与原计划的差异(依据与全部修正见 [plan-revision-2026-07-27.md](plan-revision-2026-07-27.md)):n_topics 跨全部 382 个单元统计(不只 7 个重大议题)——263 个热点事件把"同一对用户反复互动"的观测机会放大一个数量级。
+与原计划的差异(依据与全部修正见 [plan-revision-2026-07-27.md](archive/plan-revision-2026-07-27.md)):n_topics 跨全部 382 个单元统计(不只 7 个重大议题)——263 个热点事件把"同一对用户反复互动"的观测机会放大一个数量级。
 
 ## 2. 边表构建(全量实测)
 
@@ -28,11 +28,11 @@
 | 延迟退休 | 2,626,936 | 108,346 | parent_mid |
 | 体重管理 | 1,133,918 | 78,288 | root_name(无MD5列,作者名回连) |
 
-MD5 双空值哨兵已在预处理置 null,伪边天然被排除(见 [data-processing.md](data-processing.md) §3.1)。382 个单元的边表构建在 24 核服务器仅 **9 秒**(polars 多核)。
+MD5 双空值哨兵已在预处理置 null,伪边天然被排除(见 [04-data-processing.md](04-data-processing.md) §3.1)。382 个单元的边表构建在 24 核服务器仅 **9 秒**(polars 多核)。
 
 ## 3. K 阈值选择
 
-![K网格](figures/a_k_grid.png)
+![K网格](figures/11+12-k_grid.png)
 
 | K | 稳定边 | 稳定用户 | 说明 |
 |---|---|---|---|
@@ -47,19 +47,19 @@ K=3 含义:在**至少 3 个不同议题/事件**中都与他人产生转发互�
 
 ## 4. 稳定圈结构
 
-![大小分布](figures/a_size_dist.png)
+![大小分布](figures/11+12-size_dist.png)
 
 - **99,337 稳定用户 → 3,203 个稳定圈**,其中 ≥10 人的 378 个,≥100 人 66 个,≥1000 人 16 个,top 圈 9,866 人
 - **模块度 0.8448**,3 种子 ARI 0.91/0.93(结构稳定,非算法伪影)
 - 防泄漏版(仅用 2025-07-01 前互动):62,969 用户,2,367 圈,模块度 0.884——供传播预测层严格防泄漏使用
 
-![模块度对比](figures/a_modularity.png)
+![模块度对比](figures/11+12-modularity.png)
 
 单议题图模块度 0.80-0.94(全量,高于 POC 3-csv 时的 0.75-0.89),稳定图 0.845 与之同级——**稳定图在过滤 94% 偶发边后仍保持同等强度的社区结构**,说明留下的是真实社交组织。
 
 ## 5. 稳定圈是什么人?
 
-![稳定vs其他](figures/a_stable_vs_rest.png)
+![稳定vs其他](figures/11+12-stable_vs_rest.png)
 
 | 指标 | 稳定圈用户(9.9万) | 其他用户(1213万) | 倍数 |
 |---|---|---|---|
@@ -75,7 +75,7 @@ K=3 含义:在**至少 3 个不同议题/事件**中都与他人产生转发互�
 
 ## 6. 议题如何激活稳定圈
 
-![激活热力图](figures/a_activation.png)
+![激活热力图](figures/11+12-activation.png)
 
 - **AI就业**: 稳定圈成员贡献 18.1% 事件,且广泛激活几乎所有 top 圈——科技类议题是稳定骨干的"主场"
 - **生育话题**(9.5%,全量口径): 集中激活圈5/圈3/圈2等
@@ -109,4 +109,4 @@ K=3 含义:在**至少 3 个不同议题/事件**中都与他人产生转发互�
 - ~~生育话题 2 个 zip 修复后增量重跑~~ **已完成**——数字变化可忽略(±0.01%),已按GPU终版口径更新本报告
 - ~~内容一致性评估(BGE)在稳定圈上重算~~ **已完成**(见 §8)
 - 稳定圈作为 Hawkes 维度进入传播预测层(阶段C,全量拟合已完成)
-- **圈层识别结果的完整解读报告**: [circle-identification-results.md](circle-identification-results.md)
+- **圈层识别结果的完整解读报告**: [12-circle-identification-results.md](12-circle-identification-results.md)

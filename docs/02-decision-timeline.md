@@ -307,9 +307,9 @@
 - **能看到方法论盲点**,而不只是执行层面
 
 参见:
-- [circle-identification-report.md](circle-identification-report.md)
-- [content-dimension-experiment.md](content-dimension-experiment.md)
-- [content-dimension-conclusion.md](content-dimension-conclusion.md)
-- [hierarchical-circle-framework.md](hierarchical-circle-framework.md)
-- [persistent-community-framework.md](persistent-community-framework.md)
+- [circle-identification-report.md](archive/circle-identification-report.md)
+- [20-content-dimension-experiment.md](20-content-dimension-experiment.md)
+- [21-content-dimension-conclusion.md](21-content-dimension-conclusion.md)
+- [hierarchical-circle-framework.md](archive/hierarchical-circle-framework.md)
+- [10-persistent-community-framework.md](10-persistent-community-framework.md)
 - [../plans/master-todo.md](../plans/master-todo.md)

@@ -1,7 +1,7 @@
 # CircleIQ 项目总览与对照文档(快速上手指南)
 
 **用途**: 后续阅读者(或未来会话)从零理解项目架构、运行逻辑、每一步的决策依据与结果落点。
-**日期**: 2026-07-27(全量落地日)· 配套:[服务器指南](server-guide.md) · [运行日志](run-log-2026-07-27.md)
+**日期**: 2026-07-27(全量落地日)· 配套:[服务器指南](03-server-guide.md) · [运行日志](archive/run-log-2026-07-27.md)
 
 ---
 
@@ -78,7 +78,7 @@
 | `figstyle.py` | 图表样式(CVD校验过的调色板+中文字体) | 被make_figs_*调用 | - |
 | `make_figs_{stage_a,hawkes,validation,strategy,case}.py` | 报告图渲染 | results JSON→docs/figures/*.png | - |
 
-服务器端脚本(`pipeline/server/`,部署于 ppio-gpu:/root/data/)见 [server-guide.md](server-guide.md)。
+服务器端脚本(`pipeline/server/`,部署于 ppio-gpu:/root/data/)见 [03-server-guide.md](03-server-guide.md)。
 
 ## 5. 关键前提与约束(读代码前必知)
 
