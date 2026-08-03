@@ -1,0 +1,1 @@
+{"train_cost_s": 13.9, "best_val_male_log": 0.2808, "params": 18626}{"train_cost_s": 207.6, "best_val_male24_log": 0.3643, "params": 48274, "n_nodes": 14606}{"train_cost_s": 469.2, "best_val_male24_log": 0.3887, "params": 6406082}{"total_fit_sim_cost_s": 1259.1, "wall_s": 200.8, "n_rows": 5924}{"train_cost_s": {"h6": 1.0, "h24": 1.0}, "n_features": 38}
