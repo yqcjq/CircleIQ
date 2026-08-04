@@ -63,7 +63,7 @@ def fig_male_ladder(r):
 
 def fig_strata(r):
     show = ["gru_gated", "gbdt_casc", "gru", "gbdt_2s", "naive"]
-    labels = {"0-0": "y=0(60%样本)", "1-9": "1–9", "10-99": "10–99", "100-inf": "≥100(爆发)"}
+    labels = {"0-0": "y=0(64%样本)", "1-9": "1–9", "10-99": "10–99", "100-inf": "≥100(爆发)"}
     fig, ax = plt.subplots(figsize=(7.6, 3.9))
     strata = list(labels)
     x = np.arange(len(strata))
@@ -76,7 +76,7 @@ def fig_strata(r):
     ax.set_ylabel("MALE(h24)")
     ax.set_xlabel("真实 24h 量级分层")
     ax.set_ylim(0, 1.95)
-    ax.set_title("分层表现:门控赢在零层,级联特征赢在爆发层")
+    ax.set_title("分层表现:门控赢在零层;爆发层无人胜过 naive")
     ax.legend(ncol=3, loc="upper left", fontsize=8.5)
     ax.grid(axis="x", visible=False)
     fig.savefig(FIGS / "33-full_strata.png")
@@ -162,6 +162,9 @@ def fig_sentiment(s):
 
 
 def fig_closed_vs_mc(mc):
+    seen = set()
+    mc = [r for r in mc if not ((r["name"], r["dim"]) in seen
+                                or seen.add((r["name"], r["dim"])))]
     fig, ax = plt.subplots(figsize=(5.6, 4.6))
     cf = np.array([r["closed_form"] for r in mc])
     md = np.array([r["mc_delta"] for r in mc])
@@ -178,7 +181,7 @@ def fig_closed_vs_mc(mc):
     ax.set_yscale("log")
     ax.set_xlabel("闭式期望增量(24h,m=20)")
     ax.set_ylabel("MC 模拟增量(300 runs)")
-    ax.set_title("闭式 Δ 与蒙特卡洛一致(18 组,|z|≤1.63)")
+    ax.set_title(f"闭式 Δ 与蒙特卡洛一致({len(mc)} 组,|z|≤1.63)")
     ax.legend(fontsize=8.5)
     fig.savefig(FIGS / "34-closed_vs_mc.png")
     plt.close(fig)
