@@ -1,0 +1,303 @@
+{
+ "by_channel": {
+  "org": {
+   "n": 305,
+   "delta24_med": 13.71,
+   "delta24_p25": 5.81,
+   "delta24_p75": 31.15,
+   "spill_med": 0.839,
+   "other_share_med": 0.56
+  },
+  "circle_hub": {
+   "n": 903,
+   "delta24_med": 12.94,
+   "delta24_p25": 6.9,
+   "delta24_p75": 23.56,
+   "spill_med": 0.903,
+   "other_share_med": 0.535
+  },
+  "bigv": {
+   "n": 305,
+   "delta24_med": 8.53,
+   "delta24_p25": 3.89,
+   "delta24_p75": 19.92,
+   "spill_med": 0.976,
+   "other_share_med": 0.505
+  },
+  "circle_organized_risk": {
+   "n": 84,
+   "delta24_med": 51.9,
+   "delta24_p25": 26.17,
+   "delta24_p75": 88.05,
+   "spill_med": 0.763,
+   "other_share_med": 0.431
+  },
+  "circle_other_small": {
+   "n": 6,
+   "delta24_med": 16.7,
+   "delta24_p25": 11.36,
+   "delta24_p75": 19.06,
+   "spill_med": 0.633,
+   "other_share_med": 0.285
+  },
+  "circle_org_matrix": {
+   "n": 251,
+   "delta24_med": 11.74,
+   "delta24_p25": 6.21,
+   "delta24_p75": 20.79,
+   "spill_med": 0.929,
+   "other_share_med": 0.52
+  },
+  "circle_media_kol": {
+   "n": 88,
+   "delta24_med": 8.84,
+   "delta24_p25": 4.32,
+   "delta24_p75": 18.3,
+   "spill_med": 0.858,
+   "other_share_med": 0.478
+  },
+  "other": {
+   "n": 305,
+   "delta24_med": 16.14,
+   "delta24_p25": 11.55,
+   "delta24_p75": 22.19,
+   "spill_med": 0.077,
+   "other_share_med": 0.923
+  }
+ },
+ "by_channel_sent": {
+  "circle_media_kol|惊奇": {
+   "n": 11,
+   "delta24_med": 9.09,
+   "delta24_p25": 4.69,
+   "delta24_p75": 12.39,
+   "spill_med": 0.898,
+   "other_share_med": 0.481
+  },
+  "circle_org_matrix|中性主导": {
+   "n": 110,
+   "delta24_med": 10.65,
+   "delta24_p25": 6.38,
+   "delta24_p75": 19.99,
+   "spill_med": 0.873,
+   "other_share_med": 0.485
+  },
+  "circle_organized_risk|愤怒": {
+   "n": 42,
+   "delta24_med": 47.44,
+   "delta24_p25": 29.94,
+   "delta24_p75": 115.19,
+   "spill_med": 0.81,
+   "other_share_med": 0.48
+  },
+  "circle_org_matrix|愤怒": {
+   "n": 98,
+   "delta24_med": 15.33,
+   "delta24_p25": 7.34,
+   "delta24_p75": 23.75,
+   "spill_med": 0.965,
+   "other_share_med": 0.562
+  },
+  "circle_org_matrix|惊奇": {
+   "n": 10,
+   "delta24_med": 12.05,
+   "delta24_p25": 8.58,
+   "delta24_p75": 20.78,
+   "spill_med": 0.967,
+   "other_share_med": 0.492
+  },
+  "circle_hub|愤怒": {
+   "n": 555,
+   "delta24_med": 13.68,
+   "delta24_p25": 7.17,
+   "delta24_p75": 25.73,
+   "spill_med": 0.905,
+   "other_share_med": 0.566
+  },
+  "circle_organized_risk|喜悦": {
+   "n": 8,
+   "delta24_med": 33.81,
+   "delta24_p25": 11.23,
+   "delta24_p75": 92.28,
+   "spill_med": 0.529,
+   "other_share_med": 0.372
+  },
+  "circle_media_kol|愤怒": {
+   "n": 32,
+   "delta24_med": 7.44,
+   "delta24_p25": 4.16,
+   "delta24_p75": 21.36,
+   "spill_med": 0.872,
+   "other_share_med": 0.497
+  },
+  "other|喜悦": {
+   "n": 25,
+   "delta24_med": 15.15,
+   "delta24_p25": 8.59,
+   "delta24_p75": 22.7,
+   "spill_med": 0.046,
+   "other_share_med": 0.954
+  },
+  "org|愤怒": {
+   "n": 143,
+   "delta24_med": 20.08,
+   "delta24_p25": 9.56,
+   "delta24_p75": 50.31,
+   "spill_med": 0.877,
+   "other_share_med": 0.572
+  },
+  "other|愤怒": {
+   "n": 143,
+   "delta24_med": 17.24,
+   "delta24_p25": 12.72,
+   "delta24_p75": 22.63,
+   "spill_med": 0.09,
+   "other_share_med": 0.91
+  },
+  "bigv|喜悦": {
+   "n": 25,
+   "delta24_med": 3.47,
+   "delta24_p25": 2.56,
+   "delta24_p75": 6.13,
+   "spill_med": 0.968,
+   "other_share_med": 0.575
+  },
+  "circle_hub|惊奇": {
+   "n": 69,
+   "delta24_med": 12.92,
+   "delta24_p25": 7.76,
+   "delta24_p75": 19.33,
+   "spill_med": 0.899,
+   "other_share_med": 0.506
+  },
+  "org|中性主导": {
+   "n": 109,
+   "delta24_med": 8.57,
+   "delta24_p25": 3.96,
+   "delta24_p75": 16.72,
+   "spill_med": 0.806,
+   "other_share_med": 0.55
+  },
+  "bigv|愤怒": {
+   "n": 143,
+   "delta24_med": 12.12,
+   "delta24_p25": 4.69,
+   "delta24_p75": 24.87,
+   "spill_med": 0.978,
+   "other_share_med": 0.521
+  },
+  "circle_organized_risk|中性主导": {
+   "n": 22,
+   "delta24_med": 43.59,
+   "delta24_p25": 21.63,
+   "delta24_p75": 63.68,
+   "spill_med": 0.681,
+   "other_share_med": 0.369
+  },
+  "bigv|中性主导": {
+   "n": 109,
+   "delta24_med": 6.68,
+   "delta24_p25": 3.22,
+   "delta24_p75": 14.0,
+   "spill_med": 0.973,
+   "other_share_med": 0.472
+  },
+  "circle_hub|中性主导": {
+   "n": 223,
+   "delta24_med": 12.81,
+   "delta24_p25": 7.67,
+   "delta24_p75": 20.38,
+   "spill_med": 0.899,
+   "other_share_med": 0.461
+  },
+  "circle_org_matrix|喜悦": {
+   "n": 28,
+   "delta24_med": 7.71,
+   "delta24_p25": 3.52,
+   "delta24_p75": 18.22,
+   "spill_med": 0.881,
+   "other_share_med": 0.557
+  },
+  "other|中性主导": {
+   "n": 109,
+   "delta24_med": 13.86,
+   "delta24_p25": 10.88,
+   "delta24_p75": 19.98,
+   "spill_med": 0.061,
+   "other_share_med": 0.939
+  },
+  "circle_hub|喜悦": {
+   "n": 40,
+   "delta24_med": 5.04,
+   "delta24_p25": 3.73,
+   "delta24_p75": 7.69,
+   "spill_med": 0.893,
+   "other_share_med": 0.504
+  },
+  "org|喜悦": {
+   "n": 25,
+   "delta24_med": 5.78,
+   "delta24_p25": 3.32,
+   "delta24_p75": 22.0,
+   "spill_med": 0.789,
+   "other_share_med": 0.579
+  },
+  "circle_organized_risk|惊奇": {
+   "n": 8,
+   "delta24_med": 77.97,
+   "delta24_p25": 66.55,
+   "delta24_p75": 190.69,
+   "spill_med": 0.782,
+   "other_share_med": 0.427
+  },
+  "circle_hub|悲伤": {
+   "n": 9,
+   "delta24_med": 6.35,
+   "delta24_p25": 1.07,
+   "delta24_p75": 8.94,
+   "spill_med": 0.953,
+   "other_share_med": 0.549
+  },
+  "org|惊奇": {
+   "n": 22,
+   "delta24_med": 18.06,
+   "delta24_p25": 8.69,
+   "delta24_p75": 27.12,
+   "spill_med": 0.815,
+   "other_share_med": 0.538
+  },
+  "circle_media_kol|喜悦": {
+   "n": 11,
+   "delta24_med": 6.91,
+   "delta24_p25": 4.53,
+   "delta24_p75": 16.27,
+   "spill_med": 0.674,
+   "other_share_med": 0.517
+  },
+  "bigv|惊奇": {
+   "n": 22,
+   "delta24_med": 12.8,
+   "delta24_p25": 6.57,
+   "delta24_p75": 29.24,
+   "spill_med": 0.979,
+   "other_share_med": 0.499
+  },
+  "other|惊奇": {
+   "n": 22,
+   "delta24_med": 19.85,
+   "delta24_p25": 11.82,
+   "delta24_p75": 24.3,
+   "spill_med": 0.091,
+   "other_share_med": 0.909
+  },
+  "circle_media_kol|中性主导": {
+   "n": 32,
+   "delta24_med": 9.99,
+   "delta24_p25": 5.17,
+   "delta24_p75": 20.8,
+   "spill_med": 0.853,
+   "other_share_med": 0.438
+  }
+ },
+ "n_events": 305
+}

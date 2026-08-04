@@ -43,6 +43,9 @@
 | 30 | 30-stage-c-methodology.md | Hawkes方法论(论文素材) | 双核(快β1分钟级+慢β2小时级)+混合通道+固定β网格+每维凸MLE+Ogata thinning模拟器 | v1→v3演化; 分段mu+内容调制改分组拟合+OLS; 防泄漏设计 |
 | 31 | 31-stage-cde-report.md | CDE终版报告 | 312事件全量拟合+滚动2h验证+反事实+策略网格 | α通道链(大V→稳定圈→散户); APE74%(39%事件最优); 时机>咖位; 圈注入=高ROI/散户=广度 |
 | 32 | 32-prediction-screening-report.md | 传播预测算法筛选 | 圈0/圈5上GRU/GBDT/Hawkes/SIR/IC+naive对比 | GRU+GBDT入选; Hawkes/SIR/IC全败给naive; 图结构无增益; 混合方向关闭 |
+| 33 | 33-prediction-fullscale-report.md | 预测大规模验证+泄漏审计+优化轮 | 66圈×382事件/100k锚点; _pre防泄漏对照; 6条优化侧路 | 筛选结论复现; 泄漏疑虑关闭; gru_gated(分类门×GRU)全场最优MALE 0.390; 爆发层结构性不可预测 |
+| 34 | 34-strategy-closed-form-report.md | 策略层重构:闭式反事实+打法表+风险时机+自然实验 | 矩阵指数闭式Δ(312事件)+MC对照+α扰动+通道×情绪池化+DiD自然实验 | 闭式与MC一致,网格退役; 排序τ0.81; 通道角色=Δ×溢出联合; 时机只影响风险(低潮0.08vs峰值0); 自然实验方向弱一致量级不可比 |
+| 35 | 35-sentiment-line-report.md | 舆论线:圈情绪构成预测 | persist/event/markov/GRU/blend五模型对比(12,886锚点) | blend(0.7事件+0.3持续)最优; 马尔可夫演化被否决; 舆论杠杆=改变事件构成,单点注入偏移<1% |
 
 ## archive/（已废弃/归档）
 
@@ -79,3 +82,12 @@
 | 32-screen_strata.png | 32 | 量级分层 |
 | 32-screen_cases.png | 32 | 案例轨迹 |
 | 32-screen_scatter.png | 32 | 散点图 |
+| 33-full_male.png | 33 | 大规模验证总榜(h6/h24) |
+| 33-full_strata.png | 33 | 量级分层(门控vs级联) |
+| 33-full_bytype.png | 33 | 圈层类型分组表现 |
+| 33-full_leakage.png | 33 | 防泄漏对照 |
+| 34-closed_vs_mc.png | 34 | 闭式Δ vs MC对照 |
+| 34-playbook.png | 34 | 通道打法表(Δ×溢出) |
+| 34-risk_timing.png | 34 | 风险时机(低潮/上升/峰值) |
+| 34-natexp.png | 34 | 自然实验散点 |
+| 35-sentiment.png | 35 | 舆论线五模型对比 |
